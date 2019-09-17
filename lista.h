@@ -1,0 +1,53 @@
+/* 
+ * File:   Lista.h
+ * Author: Kevin
+ *
+ * Created on 13 de septiembre de 2019, 02:32 PM
+ */
+
+#ifndef LISTA_H
+#define LISTA_H
+#include "string"
+#include "Arreglo.h"
+
+class nodo {
+public:
+    nodo(arreglo*, nodo* = NULL, nodo* = NULL);
+    virtual ~nodo();
+
+    virtual arreglo* obtenerInfo() const;
+    virtual nodo* obtenerSiguiente() const;
+    virtual void establecerSiguiente(nodo* = NULL);
+    virtual nodo* obtenerAnterior()const;
+    virtual void establecerAnterior(nodo* = NULL);
+    virtual std::string toString();
+
+private:
+    arreglo* _info;
+    nodo* _siguiente;
+    nodo* _anterior;
+};
+
+class lista {
+public:
+
+        lista();
+        lista(const lista &);
+        virtual ~lista();
+        lista& operator=(const lista&);
+        lista* operator*(const lista*);
+        int numElementos() const;
+        void agregar(arreglo*);
+//        int* extraer(int);
+//        int* extraerUltimo();
+        arreglo* recuperar(int) const;
+        std::string toString();
+
+private:
+    int _n;
+    nodo* _primero;
+    nodo* _ultimo;
+
+};
+
+#endif /* LISTA_H */
