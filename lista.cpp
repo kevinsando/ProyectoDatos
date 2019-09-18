@@ -1,6 +1,9 @@
+#include <vector>
+
 #include "Lista.h"
 #include "sstream"
 #include "string"
+#include "iostream"
 using namespace std;
 
 lista::lista()
@@ -64,6 +67,12 @@ void lista::agregar(arreglo* info) {
     _n++;
 }
 
+void lista::agregarInicio(arreglo* info) {
+    nodo* nuevo = new nodo(info);
+    nuevo->establecerSiguiente(_primero);
+    _primero = nuevo;
+}
+
 arreglo* lista::recuperar(int i) const {
     arreglo* r = NULL;
     if (i < _n) {
@@ -113,14 +122,14 @@ lista* lista::operator*(const lista* b) {
             }
             if (total1->getK() < tamC) {
                 total1->agregarFinal(resultado);
-            } 
+            }
         }
         tot->agregar(total1);
     }
     for (int i = 0; i < tamC; i++) {//recorre los vectores
         int j = 0;
         while (j < i) {
-            tot->recuperar(i)->agregar(0);//agrega n ceros
+            tot->recuperar(i)->agregar(0); //agrega n ceros
             j++;
         }
     }
@@ -128,6 +137,61 @@ lista* lista::operator*(const lista* b) {
 
 
     return tot;
+}
+
+lista* lista::operator+=(lista* plus) {
+    lista* resultado = new lista();
+    arreglo* vector;
+    nodo* aux1 = this->_ultimo;
+    nodo* aux2 = plus->_ultimo;
+    int a;
+    int b;
+    int carry = 0;
+
+    while (aux1 != NULL && aux2 != NULL) {
+        vector = new arreglo();
+        for (int i = 5; i >= 0; i--) {
+            a = aux1->obtenerInfo()->obtenerEsp(i);
+            b = aux2->obtenerInfo()->obtenerEsp(i);
+            a += b += carry;
+            if (a > 9999) {
+                carry = 1;
+                a -= 10000;
+            } else
+                carry = 0;
+
+            vector->agregarFinal(a);
+
+        }
+        resultado->agregar(vector);
+        aux1 = aux1->obtenerAnterior();
+        aux2 = aux2->obtenerAnterior();
+    }
+
+
+    if (aux1 == NULL && aux2 == NULL) {
+        if (carry == 1 && vector->obtenerEsp(0) == 9999) {
+            vector = new arreglo();
+            vector->agregar(1);
+            resultado->agregarInicio(vector);
+        } else {
+            vector->setNumber(vector->obtenerEsp(0) + 1, 0);
+        }
+    } else {
+        if (aux1 == NULL) {
+            aux1 = aux2;
+        }
+        while (aux1 != NULL) {
+            vector = new arreglo(aux1->obtenerInfo());
+            resultado->agregarInicio(vector);
+        }
+    }
+
+
+
+
+
+    return resultado;
 }
 
 nodo::nodo(arreglo* info, nodo* siguiente, nodo * anterior) :

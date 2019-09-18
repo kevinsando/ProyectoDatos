@@ -36,8 +36,10 @@ public:
         virtual ~lista();
         lista& operator=(const lista&);
         lista* operator*(const lista*);
+        lista* operator += (lista*);
         int numElementos() const;
         void agregar(arreglo*);
+        void agregarInicio(arreglo*);
 //        int* extraer(int);
 //        int* extraerUltimo();
         arreglo* recuperar(int) const;

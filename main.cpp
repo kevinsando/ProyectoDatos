@@ -56,26 +56,54 @@ int main() {
     lista *l1 = new lista;
     lista *l2 = new lista;
     //lista *l3 = new lista;
-    
-    a1->agregar(1);
-    a1->agregar(2);
-    a1->agregar(3);
 
-    a2->agregar(4);
-    a2->agregar(5);
-    a2->agregar(6);
-    a2->agregar(8);
-    a2->agregar(7);
-    
+    //    a1->agregar(1);
+    //    a1->agregar(2);
+    //    a1->agregar(3);
+    //
+    //    a2->agregar(4);
+    //    a2->agregar(5);
+    //    a2->agregar(6);
+    //    a2->agregar(8);
+    //    a2->agregar(7);
+    //    
+    //    l1->agregar(a1);
+    //    l2->agregar(a2);
+    //    lista *l3 = l1->operator *(l2);
+    //    
+    //    cout<<" "<<l1->toString()<<endl;
+    //    cout<<" "<<l2->toString()<<endl;
+    //    cout<<"*__________________"<<endl;
+    //    cout<<" "<<l3->toString()<<endl;
+
+
+
+    //Test de suma
+
+    a1->agregar(999);
+    a1->agregar(9999);
+    a1->agregar(9999);
+    a1->agregar(9999);
+    a1->agregar(9999);
+    a1->agregar(9999);
+
+    a2->agregar(9999);
+    a2->agregar(9999);
+    a2->agregar(9999);
+    a2->agregar(9999);
+    a2->agregar(9999);
+    a2->agregar(9999);
+   
+
+
     l1->agregar(a1);
     l2->agregar(a2);
-    lista *l3 = l1->operator *(l2);
-    
-    cout<<" "<<l1->toString()<<endl;
-    cout<<" "<<l2->toString()<<endl;
-    cout<<"*__________________"<<endl;
-    cout<<" "<<l3->toString()<<endl;
-    
+
+    cout << " " << l1->toString()<< " +"<< " " << l2->toString()<<endl; 
+    lista* l3 = l1->operator+=(l2);
+
+    cout << " " << l3->toString() << endl;
+
 
 }
 

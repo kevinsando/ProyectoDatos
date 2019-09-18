@@ -8,11 +8,11 @@ arreglo::arreglo():_k(0),_vector(new int[6]),_n(6) {
     }
 }
 
-arreglo::arreglo(const arreglo& orig) {
-    this->_k=orig._k;
-    this->_n=orig._n;
+arreglo::arreglo(const arreglo* orig) {
+    this->_k=orig->_k;
+    this->_n=orig->_n;
     for(int i=0;i<this->_n;i++){
-        _vector[_k++]=orig._vector[i];
+        _vector[_k++]=orig->_vector[i];
     }
 }
 
@@ -52,4 +52,8 @@ void arreglo::agregarFinal(int e){
     }else{
         //error
     }
+}
+
+void arreglo::setNumber(int n, int pos){
+    _vector[pos]=n;
 }
