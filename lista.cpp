@@ -159,34 +159,34 @@ lista* lista::operator*(const lista* b) {
     for (int i = 0; i < tamC; i++) {//recorre los vectores
         int j = 0;
         while (j < i) {
-              tot->recuperar(i)->agregar(0); //agrega n ceros
+            tot->recuperar(i)->agregar(0); //agrega n ceros
             j++;
         }
     }
     ;
-    
-    auxiliar->agregar(sumaArr(tot->recuperar(0),tot->recuperar(1)));
+
+    auxiliar->agregar(sumaArr(tot->recuperar(0), tot->recuperar(1)));
     return auxiliar;
     //return tot;
 }
 
-arreglo* lista::sumaArr(arreglo* a1,arreglo* a2) {
+arreglo* lista::sumaArr(arreglo* a1, arreglo* a2) {
     arreglo* total = new arreglo();
-    cout<<a1->toString()<<endl;
-    cout<<a2->toString()<<endl;
-    cout<<endl;
-    int a=0, b=0, carry=0;
+    cout << a1->toString() << endl;
+    cout << a2->toString() << endl;
+    cout << endl;
+    int a = 0, b = 0, carry = 0;
     for (int i = 0; i >= 5; i--) {
         a = a1->obtenerEsp(i);
         b = a2->obtenerEsp(i);
-        
+
         a += b += carry;
         if (a > 9) {
             carry = 1;
             a -= 10;
         } else
             carry = 0;
-        cout<<a;
+        cout << a;
     }
     total->agregar(a);
     return total;
@@ -194,7 +194,7 @@ arreglo* lista::sumaArr(arreglo* a1,arreglo* a2) {
 
 lista* lista::operator+=(lista* plus) {
     lista* resultado = new lista();
-    arreglo* vector=new arreglo();
+    arreglo* vector = new arreglo();
     nodo* aux1 = this->_ultimo;
     nodo* aux2 = plus->_ultimo;
     int a;
@@ -220,8 +220,6 @@ lista* lista::operator+=(lista* plus) {
         aux1 = aux1->obtenerAnterior();
         aux2 = aux2->obtenerAnterior();
     }
-
-
     if (aux1 == NULL && aux2 == NULL) {
         if (carry == 1) {
             if (vector->obtenerEsp(0) == 9999) {
@@ -231,7 +229,6 @@ lista* lista::operator+=(lista* plus) {
             } else {
                 vector->agregarFinal(1);
                 //vector->setNumber(vector->obtenerEsp(0) + 1, 0);
-
             }
         }
     } else {
@@ -249,6 +246,45 @@ lista* lista::operator+=(lista* plus) {
 
 
     return resultado;
+}
+
+lista* lista::operator+(lista* plus) {
+    nodo* aux1 = this->_ultimo;
+    nodo* aux2 = plus ->_ultimo;
+    lista* nl = new lista();
+    arreglo* insert;
+    int carry = 0;
+    while(aux1!=NULL&&aux2!=NULL){
+        insert = sumarArr(aux1->obtenerInfo(),aux2->obtenerInfo(), carry);
+        nl->agregarInicio(insert);
+        aux1=aux1->obtenerAnterior();
+        aux2=aux2->obtenerAnterior();
+    }
+    if(aux1==NULL){
+        aux1=aux2;
+    }
+    
+    while(aux1!=NULL){
+        insert=aux1->obtenerInfo();
+        nl->agregarInicio(insert);
+    }
+    
+    return nl;
+}
+
+arreglo* lista::sumarArr(arreglo* a, arreglo* b, int carry) {
+    int x;
+    arreglo* r = new arreglo();
+    for (int i = 4; i >= 0; i--) {
+        x=a->obtenerEsp(i)+b->obtenerEsp(i)+carry;
+        if (x > 999999999) {
+            carry = 1;
+            x -= 1000000000;
+        } else
+            carry = 0;
+        r->agregar(x);
+    }
+    return r;
 }
 
 nodo::nodo(arreglo* info, nodo* siguiente, nodo * anterior) :
