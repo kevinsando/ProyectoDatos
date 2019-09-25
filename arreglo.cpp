@@ -55,5 +55,6 @@ void arreglo::agregarFinal(int e){
 }
 
 void arreglo::setNumber(int n, int pos){
+    
     _vector[pos]=n;
 }

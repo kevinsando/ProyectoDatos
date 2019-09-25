@@ -40,7 +40,8 @@ public:
         int numElementos() const;
         void agregar(arreglo*);
         void agregarInicio(arreglo*);
-//        int* extraer(int);
+        arreglo* sumaArr(arreglo*,arreglo*);
+        void extraer(int);
 //        int* extraerUltimo();
         arreglo* recuperar(int) const;
         std::string toString();

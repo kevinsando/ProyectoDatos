@@ -99,6 +99,34 @@ string lista::toString() {
     return s.str();
 }
 
+void lista::extraer(int posicion) {
+
+    if (numElementos() > 0) {
+        if (posicion == 0) {
+
+            nodo* tmp = _primero;
+            _primero = _primero->obtenerSiguiente();
+            delete tmp;
+        } else {
+            nodo* cursor = _primero;
+            int i = 0;
+            while (i < (posicion - 1)) {
+                cursor = cursor->obtenerSiguiente();
+                i++;
+            }
+
+            nodo* tmp = cursor->obtenerSiguiente();
+            cursor->establecerSiguiente(cursor->obtenerSiguiente()->obtenerSiguiente());
+            delete tmp;
+            if (cursor->obtenerSiguiente() == NULL) {
+                _ultimo = cursor;
+            }
+        }
+        _n--;
+    }
+
+}
+
 lista* lista::operator*(const lista* b) {
     int tamb = b->recuperar(0)->getK();
     int tamA = this->recuperar(0)->getK();
@@ -109,10 +137,12 @@ lista* lista::operator*(const lista* b) {
         tamC = tamA;
     }
     lista *tot = new lista();
+    lista *auxiliar = new lista();
     int resultado;
     int carry = 0;
     for (int i = b->recuperar(0)->getK() - 1; i >= 0; i--) {
         arreglo *total1 = new arreglo();
+
         for (int j = this->recuperar(0)->getK() - 1; j >= 0; j--) {
 
             resultado = (b->recuperar(0)->obtenerEsp(i) * this->recuperar(0)->obtenerEsp(j)) + carry;
@@ -129,14 +159,37 @@ lista* lista::operator*(const lista* b) {
     for (int i = 0; i < tamC; i++) {//recorre los vectores
         int j = 0;
         while (j < i) {
-            tot->recuperar(i)->agregar(0); //agrega n ceros
+              tot->recuperar(i)->agregar(0); //agrega n ceros
             j++;
         }
     }
+    ;
+    
+    auxiliar->agregar(sumaArr(tot->recuperar(0),tot->recuperar(1)));
+    return auxiliar;
+    //return tot;
+}
 
-
-
-    return tot;
+arreglo* lista::sumaArr(arreglo* a1,arreglo* a2) {
+    arreglo* total = new arreglo();
+    cout<<a1->toString()<<endl;
+    cout<<a2->toString()<<endl;
+    cout<<endl;
+    int a, b, carry;
+    for (int i = 0; i >= 5; i--) {
+        a = a1->obtenerEsp(i);
+        b = a2->obtenerEsp(i);
+        
+        a += b += carry;
+        if (a > 9) {
+            carry = 1;
+            a -= 10;
+        } else
+            carry = 0;
+        cout<<a;
+    }
+    total->agregar(a);
+    return total;
 }
 
 lista* lista::operator+=(lista* plus) {
@@ -154,9 +207,9 @@ lista* lista::operator+=(lista* plus) {
             a = aux1->obtenerInfo()->obtenerEsp(i);
             b = aux2->obtenerInfo()->obtenerEsp(i);
             a += b += carry;
-            if (a > 9999) {
+            if (a > 9) {
                 carry = 1;
-                a -= 10000;
+                a -= 10;
             } else
                 carry = 0;
 
@@ -170,12 +223,16 @@ lista* lista::operator+=(lista* plus) {
 
 
     if (aux1 == NULL && aux2 == NULL) {
-        if (carry == 1 && vector->obtenerEsp(0) == 9999) {
-            vector = new arreglo();
-            vector->agregar(1);
-            resultado->agregarInicio(vector);
-        } else {
-            vector->setNumber(vector->obtenerEsp(0) + 1, 0);
+        if (carry == 1) {
+            if (vector->obtenerEsp(0) == 9999) {
+                vector = new arreglo();
+                vector->agregar(1);
+                resultado->agregarInicio(vector);
+            } else {
+                vector->agregarFinal(1);
+                //vector->setNumber(vector->obtenerEsp(0) + 1, 0);
+
+            }
         }
     } else {
         if (aux1 == NULL) {
