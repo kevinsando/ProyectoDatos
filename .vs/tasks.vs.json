@@ -1,0 +1,17 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+   
+    {
+      "taskLabel": "tarea-ProyectoDatos",
+      "appliesTo": "/",
+      "type": "launch",
+      "args": [
+        "-g",
+        "-o",
+        "main",
+        "main.cpp"
+      ]
+    }
+  ]
+}

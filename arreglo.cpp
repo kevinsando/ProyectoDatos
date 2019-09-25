@@ -2,7 +2,7 @@
 #include "sstream"
 //
 using namespace std;
-arreglo::arreglo():_k(0),_vector(new int[6]),_n(6) {
+arreglo::arreglo():_k(0),_vector(new int[6]),_n(9) {
     for(int i=0;i<_n;i++){
         _vector[i]=0;
     }

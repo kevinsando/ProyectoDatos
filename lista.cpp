@@ -175,7 +175,7 @@ arreglo* lista::sumaArr(arreglo* a1,arreglo* a2) {
     cout<<a1->toString()<<endl;
     cout<<a2->toString()<<endl;
     cout<<endl;
-    int a, b, carry;
+    int a=0, b=0, carry=0;
     for (int i = 0; i >= 5; i--) {
         a = a1->obtenerEsp(i);
         b = a2->obtenerEsp(i);
@@ -194,7 +194,7 @@ arreglo* lista::sumaArr(arreglo* a1,arreglo* a2) {
 
 lista* lista::operator+=(lista* plus) {
     lista* resultado = new lista();
-    arreglo* vector;
+    arreglo* vector=new arreglo();
     nodo* aux1 = this->_ultimo;
     nodo* aux2 = plus->_ultimo;
     int a;

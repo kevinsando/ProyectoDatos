@@ -2,6 +2,7 @@
 #include<cstring>
 #include "lista.h"
 #include "arreglo.h"
+#include"integer.h"
 #include "string"
 using namespace std;
 
@@ -53,10 +54,9 @@ int main() {
     //    return 0;
     arreglo *a1 = new arreglo();
     arreglo *a2 = new arreglo();
-    lista *l1 = new lista;
-    lista *l2 = new lista;
-
-
+    lista *l1 = new lista();
+    lista *l2 = new lista();
+	integer* num = new integer(1232132);
                 a1->agregar(1);
                 a1->agregar(6);
                 a1->agregar(4);
@@ -69,12 +69,12 @@ int main() {
                 
                 l1->agregar(a1);
                 l2->agregar(a2);
-                lista *l3 = l1->operator *(l2);
+                //lista *l3 = l1->operator *(l2);
                 
                 cout<<" "<<l1->toString()<<endl;
                 cout<<" "<<l2->toString()<<endl;
                 cout<<"*__________________"<<endl;
-                cout<<" "<<l3->toString()<<endl;
+                //cout<<" "<<l3->toString()<<endl;
 
 
 
@@ -104,7 +104,7 @@ int main() {
 //    lista* l3 = l1->operator+=(l2);
 //
 //    cout << " " << l3->toString() << endl;
-
-
+cin.get();
+	return 0;
 }
 
