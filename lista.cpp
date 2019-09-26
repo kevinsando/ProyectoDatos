@@ -2,7 +2,6 @@
 
 #include "Lista.h"
 #include "sstream"
-#include "string"
 #include "iostream"
 using namespace std;
 
@@ -150,45 +149,72 @@ lista* lista::operator*(const lista* b) {
             if (resultado >= 10) {
                 resultado = resultado % 10;
             }
+
             if (total1->getK() < tamC) {
                 total1->agregarFinal(resultado);
+                if (carry == 1) {
+                    total1->agregarFinal(1);
+                }
             }
         }
         tot->agregar(total1);
+        carry = 0;
     }
+
     for (int i = 0; i < tamC; i++) {//recorre los vectores
         int j = 0;
         while (j < i) {
             tot->recuperar(i)->agregar(0); //agrega n ceros
+
             j++;
         }
     }
-    ;
+
+    for (int i = 1; i < tamC; i++) {
+        int j = 0;
+        while (j < 9) {
+            tot->recuperar(i)->agregarFinal(0);
+            tot->recuperar(0)->agregarFinal(0);
+            j++;
+        }
+
+    }
+    tot->recuperar(0)->agregarFinal(0);
 
     auxiliar->agregar(sumaArr(tot->recuperar(0), tot->recuperar(1)));
+    for (int i = 0; i < 3; i++) {
+        auxiliar->agregar(sumaArr(auxiliar->recuperar(0), tot->recuperar(2)));
+
+    }
     return auxiliar;
     //return tot;
 }
 
 arreglo* lista::sumaArr(arreglo* a1, arreglo* a2) {
     arreglo* total = new arreglo();
+
     cout << a1->toString() << endl;
     cout << a2->toString() << endl;
     cout << endl;
     int a = 0, b = 0, carry = 0;
-    for (int i = 0; i >= 5; i--) {
+    for (int i = 8; i >= 0; i--) {
         a = a1->obtenerEsp(i);
         b = a2->obtenerEsp(i);
 
+        cout << endl;
         a += b += carry;
         if (a > 9) {
             carry = 1;
             a -= 10;
-        } else
+        } else {
             carry = 0;
-        cout << a;
+        }
+
+        total->agregarFinal(a);
+
     }
-    total->agregar(a);
+    total->agregarFinal(1);
+
     return total;
 }
 
@@ -254,21 +280,21 @@ lista* lista::operator+(lista* plus) {
     lista* nl = new lista();
     arreglo* insert;
     int carry = 0;
-    while(aux1!=NULL&&aux2!=NULL){
-        insert = sumarArr(aux1->obtenerInfo(),aux2->obtenerInfo(), carry);
+    while (aux1 != NULL && aux2 != NULL) {
+        insert = sumarArr(aux1->obtenerInfo(), aux2->obtenerInfo(), carry);
         nl->agregarInicio(insert);
-        aux1=aux1->obtenerAnterior();
-        aux2=aux2->obtenerAnterior();
+        aux1 = aux1->obtenerAnterior();
+        aux2 = aux2->obtenerAnterior();
     }
-    if(aux1==NULL){
-        aux1=aux2;
+    if (aux1 == NULL) {
+        aux1 = aux2;
     }
-    
-    while(aux1!=NULL){
-        insert=aux1->obtenerInfo();
+
+    while (aux1 != NULL) {
+        insert = aux1->obtenerInfo();
         nl->agregarInicio(insert);
     }
-    
+
     return nl;
 }
 
@@ -276,7 +302,7 @@ arreglo* lista::sumarArr(arreglo* a, arreglo* b, int carry) {
     int x;
     arreglo* r = new arreglo();
     for (int i = 4; i >= 0; i--) {
-        x=a->obtenerEsp(i)+b->obtenerEsp(i)+carry;
+        x = a->obtenerEsp(i) + b->obtenerEsp(i) + carry;
         if (x > 999999999) {
             carry = 1;
             x -= 1000000000;

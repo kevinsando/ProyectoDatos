@@ -1,8 +1,9 @@
 #include "Arreglo.h"
 #include "sstream"
-//
+#include "iostream"
 using namespace std;
-arreglo::arreglo():_k(0),_vector(new int[6]),_n(9) {
+
+arreglo::arreglo():_k(0),_vector(new int[9]),_n(9) {
     for(int i=0;i<_n;i++){
         _vector[i]=0;
     }

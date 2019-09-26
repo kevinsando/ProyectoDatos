@@ -4,6 +4,8 @@
 #include "arreglo.h"
 #include"integer.h"
 #include "string"
+#include "iostream"
+#include "sstream"
 using namespace std;
 
 
@@ -52,29 +54,31 @@ int main() {
     //    std::cin.get();
     //    std::cin.get();
     //    return 0;
-    //    arreglo *a1 = new arreglo();
-    //    arreglo *a2 = new arreglo();
-    //    lista *l1 = new lista();
-    //    lista *l2 = new lista();
-    //	integer* num = new integer(1232132);
-    //                a1->agregar(1);
-    //                a1->agregar(6);
-    //                a1->agregar(4);
-    //            
-    //                a2->agregar(4);
-    //                a2->agregar(5);
-    //                a2->agregar(6);
-    //    //            a2->agregar(8);
-    //    //            a2->agregar(7);
-    //                
-    //                l1->agregar(a1);
-    //                l2->agregar(a2);
-    //                //lista *l3 = l1->operator *(l2);
-    //                
-    //                cout<<" "<<l1->toString()<<endl;
-    //                cout<<" "<<l2->toString()<<endl;
-    //                cout<<"*__________________"<<endl;
-    //                //cout<<" "<<l3->toString()<<endl;
+    
+    
+        arreglo *a1 = new arreglo();
+        arreglo *a2 = new arreglo();
+        lista *l1 = new lista();
+        lista *l2 = new lista();
+    	integer* num = new integer(1232132);
+                    a1->agregar(3);
+                    a1->agregar(6);
+                    a1->agregar(4);
+                
+                    a2->agregar(4);
+                    a2->agregar(5);
+                    a2->agregar(6);
+        //            a2->agregar(8);
+        //            a2->agregar(7);
+                    
+                    l1->agregar(a1);
+                    l2->agregar(a2);
+                    lista *l3 = l1->operator *(l2);
+                    
+                    cout<<" "<<l1->toString()<<endl;
+                    cout<<" "<<l2->toString()<<endl;
+                    cout<<"*__________________"<<endl;
+                    cout<<" "<<l3->toString()<<endl;
 
 
 
@@ -106,21 +110,6 @@ int main() {
     //   cout << " " << l3->toString() << endl;
     //cin.get();
 
-
-    lista *l1 = new lista();
-    lista *l2 = new lista();
-    lista* l3 = new lista();
-    arreglo *a1 = new arreglo();
-    arreglo *a2 = new arreglo();
-    
-    a1->agregar(999999);
-    a2->agregar(999999);
-    
-    l1->agregar(a1);
-    l2->agregar(a2);
-    
-    l3= l1->operator +(l2);
-    cout<<l3->toString();
     return 0;
 }
 
