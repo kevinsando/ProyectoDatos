@@ -139,7 +139,7 @@ int main() {
     cout<<num->toString();
     
     
-    
+	cin.get();
     return 0;
 }
 

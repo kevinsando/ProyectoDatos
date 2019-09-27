@@ -240,7 +240,8 @@ arreglo* lista::sumaArr(arreglo* a1, arreglo* a2) {//recibe dos arreglos para su
 }
 
 lista* lista::operator+=(lista* plus) {
-    //implementar Jasson
+	return NULL;
+	//implementar Jasson
 }
 
 lista* lista::operator+(lista* plus) {
