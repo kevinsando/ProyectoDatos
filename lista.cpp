@@ -323,9 +323,73 @@ lista* lista::operator-(lista* resta) {
         cout << aux1->obtenerInfo()->toString() << endl;
         cout << aux2->obtenerInfo()->toString() << endl;
         cout << endl;
+        if (aux1->obtenerInfo()->obtenerEsp(0) >= aux2->obtenerInfo()->obtenerEsp(0)) {
+             nl = restar(this,resta);
+             
+        }
+        if(aux1->obtenerInfo()->obtenerEsp(0) < aux2->obtenerInfo()->obtenerEsp(0)){
+         // nl = restar(resta,this);
+          nl = restar(this,resta);
+        }
+//        while (aux1 != NULL && aux2 != NULL) {
+//            int x = 0;
+//            int c = 0;
+//            for (int i = 8; i >= 0; i--) {
+//
+//                int a = aux1->obtenerInfo()->obtenerEsp(i);
+//                int b = (aux2->obtenerInfo()->obtenerEsp(i));
+//
+//                if (a < b) {//si el de arriba es menor al de abajo
+//                    a += 10;
+//                    c = i - 1;
+//                    aux2->obtenerInfo()->editarEsp(c + 1, 1);
+//                }
+//                x = a - b;
+//                insert->agregarFinal(x);
+//
+//            }
+//            x = 0;
+//            insert->editarEsp(c, 1);
+//            nl->agregarInicio(insert);
+//
+//            aux1 = aux1->obtenerAnterior();
+//            aux2 = aux2->obtenerAnterior();
+//        }
+//        if (aux1 == NULL && aux2 == NULL && carry > 0) {
+//            insert = new arreglo();
+//            insert->agregarFinal(carry);
+//            nl->agregarInicio(insert);
+//        }
+//        while (aux1 != NULL) {
+//            insert = new arreglo(aux1->obtenerInfo());
+//            nl->agregarInicio(insert);
+//            aux1 = aux1->obtenerAnterior();
+//            if (carry > 0) {
+//                insert->setNumber(8, insert->obtenerEsp(8) + 1);
+//            }
+//        }
+//        while (aux2 != NULL) {
+//            insert = new arreglo(aux2->obtenerInfo());
+//            nl->agregarInicio(insert);
+//            aux2 = aux2->obtenerAnterior();
+//            if (carry > 0) {
+//                insert->setNumber((insert->obtenerEsp(8) + 1), 8);
+//            }
+//        }
+    }
 
-        while (aux1 != NULL && aux2 != NULL) {
-            int x=0;
+    return nl;
+}
+
+lista* lista::restar(lista* r1, lista* resta) {
+    nodo* aux1 = r1->_ultimo;
+    nodo* aux2 = resta ->_ultimo;
+    lista* nl = new lista();
+    arreglo* insert = new arreglo();
+    int carry = 0;
+    
+    while (aux1 != NULL && aux2 != NULL) {
+            int x = 0;
             int c = 0;
             for (int i = 8; i >= 0; i--) {
 
@@ -341,7 +405,7 @@ lista* lista::operator-(lista* resta) {
                 insert->agregarFinal(x);
 
             }
-            x=0;
+            x = 0;
             insert->editarEsp(c, 1);
             nl->agregarInicio(insert);
 
@@ -369,9 +433,8 @@ lista* lista::operator-(lista* resta) {
                 insert->setNumber((insert->obtenerEsp(8) + 1), 8);
             }
         }
-    }
-
     return nl;
+
 }
 
 nodo::nodo(arreglo* info, nodo* siguiente, nodo * anterior) :
