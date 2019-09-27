@@ -99,3 +99,9 @@ void arreglo::setNumber(int n, int pos) {
 
     _vector[pos] = n;
 }
+
+void arreglo::editarEsp(int i, int e) {
+    if (i != 0) {
+        _vector[i] -= e;
+    }
+}

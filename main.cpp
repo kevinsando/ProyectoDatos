@@ -117,20 +117,28 @@ int main() {
     lista *l1 = new lista();
     lista *l2 = new lista();
     //integer* num = new integer(1232132);
-    a1->agregaPorPartes(1234);
-    a1->agregaPorPartes(56789);
-    //a1->agregar(1);
-    a2->agregaPorPartes(1234);
-    a2->agregaPorPartes(56789);
-   // a2->agregar(1);
+    
+
+   // a1->agregarFinal(88888888);
+   // a1->agregarFinal(666666666);
+    a1->agregarFinal(777777777);
+    
+//    a1->agregarFinal(5555);
+//    a1->agregarFinal(4444);
+    
+   
+  // a2->agregarFinal(22922291);
+    //a2->agregarFinal(55555555);
+    a2->agregarFinal(839383933);
+//    a2->agregarFinal(1111);
     //                    
     l1->agregar(a1);
     l2->agregar(a2);
-    lista *l3 = l1->operator * (l2);
+    lista *l3 = l1->operator - (l2);
     //              
     cout << " " << l1->toString() << endl;
     cout << " " << l2->toString() << endl;
-    cout << "*__________________" << endl;
+    cout << "-__________________" << endl;
     cout << " " << l3->toString() << endl;
 
  /*   integer* num = new integer(l3);
