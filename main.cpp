@@ -117,9 +117,12 @@ int main() {
     lista *l1 = new lista();
     lista *l2 = new lista();
     //integer* num = new integer(1232132);
-    a1->agregar(12345678);
-    a2->agregar(87654321);
-
+    a1->agregaPorPartes(1234);
+    a1->agregaPorPartes(56789);
+    //a1->agregar(1);
+    a2->agregaPorPartes(1234);
+    a2->agregaPorPartes(56789);
+   // a2->agregar(1);
     //                    
     l1->agregar(a1);
     l2->agregar(a2);
@@ -134,7 +137,7 @@ int main() {
     cout<<num->toString();
     */
     
-	cin.get();
+	//cin.get();
     return 0;
 }
 

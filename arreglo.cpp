@@ -31,6 +31,33 @@ void arreglo::agregar(int e) {
     }
 }
 
+void arreglo::agregaPorPartes(int e) {
+    int division1, division2;
+
+    int n = e;
+    long long r = 0;
+    while (n > 0) {
+        n = n / 10;
+        r++;
+    }
+
+    if (r > 7) {
+        division1 = e / 10000;
+        division2 = e % 10000;
+
+        if (_k < _n) {
+            _vector[_k++] = division1;
+
+            _vector[_k++] = division2;
+
+        }
+    } else {
+        if (_k < _n) {
+            _vector[_k++] = e; //agrega el resultado de la multiplicacion a un nuevo arreglo
+        }
+    }
+}
+
 string arreglo::toString() {
     stringstream s;
     s << "[";
@@ -55,15 +82,15 @@ void arreglo::agregarFinal(int e) {
     }
 }
 
-void arreglo::agregarFinalS(int e){
-    if(_k<_n){
-        for(int i=_k;i>=0;i--){
-            _vector[i+1]=_vector[i];
+void arreglo::agregarFinalS(int e) {
+    if (_k < _n) {
+        for (int i = _k; i >= 0; i--) {
+            _vector[i + 1] = _vector[i];
         }
-        _vector[0]=e;
+        _vector[0] = e;
         _k++;
-        
-    }else{
+
+    } else {
         //error
     }
 }
