@@ -45,7 +45,7 @@ public:
         void extraer(int);
 //        int* extraerUltimo();
         arreglo* recuperar(int) const;
-        arreglo* sumarArr(arreglo*,arreglo*, int); //Jasson
+        arreglo* sumarArr(arreglo*,arreglo*,int&); //Jasson
         std::string toString();
 
 private:

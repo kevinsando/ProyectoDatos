@@ -5,10 +5,11 @@
 class arreglo {
 public:
     arreglo();
-    arreglo(const arreglo* orig);
+    arreglo(arreglo* orig);
     virtual ~arreglo();
     void agregar(int);
     void agregarFinal(int);
+    void agregarFinalS(int);
     int obtenerEsp(int);
     std::string toString();
     int getK();
@@ -16,6 +17,7 @@ public:
 private:
     int _k;
     int _n;
+    int last;
     int *_vector;
 };
 

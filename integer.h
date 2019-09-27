@@ -1,6 +1,8 @@
 #ifndef INTEGER_H
 #define INTEGER_H
 #include "lista.h"
+#include "string"
+#include <sstream>
 using namespace std;
 class integer {
 public:
@@ -9,9 +11,9 @@ public:
 	integer(long);
     integer(const integer& orig);
     virtual ~integer();
+    string toString();
 private:
 	lista* valor;
 };
 
 #endif /* INTEGER_H */
-

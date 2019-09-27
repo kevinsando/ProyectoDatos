@@ -2,6 +2,7 @@
 
 #include "Lista.h"
 #include "sstream"
+#include "string"
 #include "iostream"
 using namespace std;
 
@@ -18,6 +19,7 @@ lista::lista(const lista &otra)
             _primero = _ultimo = nuevo;
         } else {
             _ultimo->establecerSiguiente(nuevo);
+            nuevo->establecerAnterior(_ultimo);
             _ultimo = nuevo;
         }
         _n++;
@@ -31,10 +33,8 @@ lista::~lista() {
 
 lista& lista::operator=(const lista &otra) {
     if (this != &otra) {
-
         _n = 0;
         _primero = _ultimo = NULL;
-
         nodo* cursor = otra._primero;
         while (cursor != NULL) {
             nodo* nuevo = new nodo(cursor->obtenerInfo());
@@ -42,6 +42,7 @@ lista& lista::operator=(const lista &otra) {
                 _primero = _ultimo = nuevo;
             } else {
                 _ultimo->establecerSiguiente(nuevo);
+                nuevo->establecerAnterior(_ultimo);
                 _ultimo = nuevo;
             }
             _n++;
@@ -61,6 +62,7 @@ void lista::agregar(arreglo* info) {
         _primero = _ultimo = nuevo;
     } else {
         _ultimo->establecerSiguiente(nuevo);
+        nuevo->establecerAnterior(_ultimo);
         _ultimo = nuevo;
     }
     _n++;
@@ -68,8 +70,13 @@ void lista::agregar(arreglo* info) {
 
 void lista::agregarInicio(arreglo* info) {
     nodo* nuevo = new nodo(info);
-    nuevo->establecerSiguiente(_primero);
-    _primero = nuevo;
+    if (_primero == NULL) {
+        _primero = _ultimo = nuevo;
+    } else {
+        nuevo->establecerSiguiente(_primero);
+        _primero->establecerAnterior(nuevo);
+        _primero = nuevo;
+    }
 }
 
 arreglo* lista::recuperar(int i) const {
@@ -126,7 +133,9 @@ void lista::extraer(int posicion) {
 
 }
 
-lista* lista::operator*(const lista* b) {
+lista* lista::operator*(const lista* b) {//multiplicación
+
+    //verifica cual vector tiene más digitos para saber cuantos corrimientos se deben hacer
     int tamb = b->recuperar(0)->getK();
     int tamA = this->recuperar(0)->getK();
     int tamC = 0;
@@ -135,143 +144,104 @@ lista* lista::operator*(const lista* b) {
     } else {
         tamC = tamA;
     }
-    lista *tot = new lista();
-    lista *auxiliar = new lista();
-    int resultado;
-    int carry = 0;
-    for (int i = b->recuperar(0)->getK() - 1; i >= 0; i--) {
-        arreglo *total1 = new arreglo();
+    //---------
+    lista *tot = new lista(); //lista que retorna el resultado de la multiplicacion sin la suma
+    lista *auxiliar = new lista(); //alamacena la lista final con la multiplicacion y suma, es la que se retorna
 
-        for (int j = this->recuperar(0)->getK() - 1; j >= 0; j--) {
+    long resultado; //guarda el total de la multiplicacion de digito por digito
 
-            resultado = (b->recuperar(0)->obtenerEsp(i) * this->recuperar(0)->obtenerEsp(j)) + carry;
-            carry = resultado / 10;
+    int a; //guarda digito a multiplicar
+    int bb; //guarda digito a multiplicar
+    int carry = 0; //acarreo
+    for (int i = b->recuperar(0)->getK() - 1; i >= 0; i--) {//recorrere los arreglos de la lista
+        arreglo *total1 = new arreglo(); //contiene la multiplicacion solo por un digito
+
+        for (int j = this->recuperar(0)->getK() - 1; j >= 0; j--) {//recorrere los arreglos de la lista
+
+            a = this->recuperar(0)->obtenerEsp(j); //obtiene digito por digito del arreglo para multiplicarlo
+            bb = b->recuperar(0)->obtenerEsp(i); //obtiene digito por digito del arreglo para multiplicarlo
+            resultado = (a * bb) + carry; //multiplicacion de a*bb ya terminada
+            carry = resultado / 10; //calculo de acarreo
             if (resultado >= 10) {
                 resultado = resultado % 10;
             }
 
-            if (total1->getK() < tamC) {
-                total1->agregarFinal(resultado);
-                if (carry == 1) {
-                    total1->agregarFinal(1);
-                }
-            }
+
+            total1->agregarFinalS(resultado); //agrega el resultado de la multiplicacion a un nuevo arreglo
         }
-        tot->agregar(total1);
-        carry = 0;
+        total1->agregarFinalS(carry); //agrega el acarreo 
+        tot->agregar(total1); //agrega a la lista final el arreglo que contiene la multiplicacion
+        //cada arreglo contiene la multiplicacion de toda una lista por un digito de la segunda lista
+        carry = 0; //retorna el carry a su valor inicial
     }
 
     for (int i = 0; i < tamC; i++) {//recorre los vectores
         int j = 0;
         while (j < i) {
-            tot->recuperar(i)->agregar(0); //agrega n ceros
-
+            tot->recuperar(i)->agregar(0); //agrega n ceros, corrimiento para sumar
             j++;
         }
     }
 
-    for (int i = 1; i < tamC; i++) {
+    for (int i = 1; i < tamC; i++) {//completa los vectores a nueve digitos con ceros
         int j = 0;
         while (j < 9) {
-            tot->recuperar(i)->agregarFinal(0);
-            tot->recuperar(0)->agregarFinal(0);
+            tot->recuperar(i)->agregarFinalS(0);
+            tot->recuperar(0)->agregarFinalS(0);
             j++;
         }
 
     }
-    tot->recuperar(0)->agregarFinal(0);
+    tot->recuperar(0)->agregarFinalS(0);
+
+    //********** Calculo Suma **********
 
     auxiliar->agregar(sumaArr(tot->recuperar(0), tot->recuperar(1)));
-    for (int i = 0; i < 3; i++) {
-        auxiliar->agregar(sumaArr(auxiliar->recuperar(0), tot->recuperar(2)));
+    for (int i = 2; i < tamC; i++) {
 
+        auxiliar->agregar(sumaArr(auxiliar->recuperar(0), tot->recuperar(i)));
+
+        auxiliar->extraer(0);
     }
     return auxiliar;
-    //return tot;
+    //   return tot;
 }
 
-arreglo* lista::sumaArr(arreglo* a1, arreglo* a2) {
-    arreglo* total = new arreglo();
+arreglo* lista::sumaArr(arreglo* a1, arreglo* a2) {//recibe dos arreglos para sumarlos
+    arreglo* total = new arreglo(); //se alamacena un nuevo arreglo equivalente a suma de los dos que se reciben por parametro
 
-    cout << a1->toString() << endl;
-    cout << a2->toString() << endl;
+    cout << a1->toString() << endl; //test
+    cout << a2->toString() << endl; //test
     cout << endl;
     int a = 0, b = 0, carry = 0;
-    for (int i = 8; i >= 0; i--) {
+
+    cout << a1->obtenerEsp(9) << endl;//test
+    cout << a2->obtenerEsp(9) << endl;//test
+
+    for (int i = 8; i >= 0; i--) {//recorre los dos arreglos
         a = a1->obtenerEsp(i);
         b = a2->obtenerEsp(i);
 
         cout << endl;
-        a += b += carry;
-        if (a > 9) {
+        a += b += carry;//suma de los dos arreglos
+        if (a > 9) {//acarreo
             carry = 1;
             a -= 10;
         } else {
             carry = 0;
         }
 
-        total->agregarFinal(a);
+        total->agregarFinalS(a);//agrega al arreglo la suma de digitos 
 
     }
-    total->agregarFinal(1);
-
+    if (carry == 1) {//acarreo
+        total->agregarFinalS(1);
+    }
     return total;
 }
 
 lista* lista::operator+=(lista* plus) {
-    lista* resultado = new lista();
-    arreglo* vector = new arreglo();
-    nodo* aux1 = this->_ultimo;
-    nodo* aux2 = plus->_ultimo;
-    int a;
-    int b;
-    int carry = 0;
-
-    while (aux1 != NULL && aux2 != NULL) {
-        vector = new arreglo();
-        for (int i = 5; i >= 0; i--) {
-            a = aux1->obtenerInfo()->obtenerEsp(i);
-            b = aux2->obtenerInfo()->obtenerEsp(i);
-            a += b += carry;
-            if (a > 9) {
-                carry = 1;
-                a -= 10;
-            } else
-                carry = 0;
-
-            vector->agregarFinal(a);
-
-        }
-        resultado->agregar(vector);
-        aux1 = aux1->obtenerAnterior();
-        aux2 = aux2->obtenerAnterior();
-    }
-    if (aux1 == NULL && aux2 == NULL) {
-        if (carry == 1) {
-            if (vector->obtenerEsp(0) == 9999) {
-                vector = new arreglo();
-                vector->agregar(1);
-                resultado->agregarInicio(vector);
-            } else {
-                vector->agregarFinal(1);
-                //vector->setNumber(vector->obtenerEsp(0) + 1, 0);
-            }
-        }
-    } else {
-        if (aux1 == NULL) {
-            aux1 = aux2;
-        }
-        while (aux1 != NULL) {
-            vector = new arreglo(aux1->obtenerInfo());
-            resultado->agregarInicio(vector);
-        }
-    }
-
-
-
-
-
-    return resultado;
+    //implementar Jasson
 }
 
 lista* lista::operator+(lista* plus) {
@@ -286,29 +256,42 @@ lista* lista::operator+(lista* plus) {
         aux1 = aux1->obtenerAnterior();
         aux2 = aux2->obtenerAnterior();
     }
-    if (aux1 == NULL) {
-        aux1 = aux2;
-    }
-
-    while (aux1 != NULL) {
-        insert = aux1->obtenerInfo();
+    if (aux1 == NULL && aux2 == NULL && carry > 0) {
+        insert = new arreglo();
+        insert->agregarFinal(carry);
         nl->agregarInicio(insert);
     }
-
+    while (aux1 != NULL) {
+        insert = new arreglo(aux1->obtenerInfo());
+        nl->agregarInicio(insert);
+        aux1 = aux1->obtenerAnterior();
+        if(carry>0){
+            insert->setNumber(8,insert->obtenerEsp(8)+1);
+        }
+    }
+    while (aux2 != NULL) {
+        insert = new arreglo(aux2->obtenerInfo());
+        nl->agregarInicio(insert);
+        aux2 = aux2->obtenerAnterior();
+        if(carry>0){
+            insert->setNumber((insert->obtenerEsp(8)+1),8);
+        }
+    }
     return nl;
 }
 
-arreglo* lista::sumarArr(arreglo* a, arreglo* b, int carry) {
+arreglo* lista::sumarArr(arreglo* a, arreglo* b, int& carry) { //METODO DE JASSON
     int x;
     arreglo* r = new arreglo();
-    for (int i = 4; i >= 0; i--) {
-        x = a->obtenerEsp(i) + b->obtenerEsp(i) + carry;
+    for (int i = 8; i >= 0; i--) {
+        x = a ->obtenerEsp(i) + b->obtenerEsp(i) + carry;
         if (x > 999999999) {
             carry = 1;
             x -= 1000000000;
-        } else
+        } else {
             carry = 0;
-        r->agregar(x);
+        }
+        r->agregarFinal(x);
     }
     return r;
 }

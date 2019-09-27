@@ -21,6 +21,13 @@ integer::integer(long l)
 integer::integer(const integer& orig) {
 }
 
+string integer::toString(){
+    stringstream s;
+    s<<valor->toString()<<endl;
+    
+    return s.str();
+}
+
 integer::~integer() {
 }
 
