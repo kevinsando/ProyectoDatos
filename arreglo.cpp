@@ -51,8 +51,7 @@ int arreglo::obtenerEsp(int i) {
 
 void arreglo::agregarFinal(int e) {
     if (last >= 0) {
-        _vector[last] = e;
-        last--;
+        _vector[last--] = e;
     }
 }
 

@@ -147,11 +147,11 @@ lista* lista::operator*(const lista* b) {//multiplicación
     lista *tot = new lista(); //lista que retorna el resultado de la multiplicacion sin la suma
     lista *auxiliar = new lista(); //alamacena la lista final con la multiplicacion y suma, es la que se retorna
 
-    long resultado; //guarda el total de la multiplicacion de digito por digito
+    long long resultado=0; //guarda el total de la multiplicacion de digito por digito
 
-    int a; //guarda digito a multiplicar
-    int bb; //guarda digito a multiplicar
-    int carry = 0; //acarreo
+    int a=0; //guarda digito a multiplicar
+    int bb=0; //guarda digito a multiplicar
+    long long carry = 0; //acarreo
     for (int i = b->recuperar(0)->getK() - 1; i >= 0; i--) {//recorrere los arreglos de la lista
         arreglo *total1 = new arreglo(); //contiene la multiplicacion solo por un digito
 
@@ -159,19 +159,21 @@ lista* lista::operator*(const lista* b) {//multiplicación
 
             a = this->recuperar(0)->obtenerEsp(j); //obtiene digito por digito del arreglo para multiplicarlo
             bb = b->recuperar(0)->obtenerEsp(i); //obtiene digito por digito del arreglo para multiplicarlo
-            resultado = (a * bb) + carry; //multiplicacion de a*bb ya terminada
+            resultado = (long long) a * (long long) bb + (long long)carry; //multiplicacion de a*bb ya terminada
             carry = resultado / 10; //calculo de acarreo
             if (resultado >= 10) {
                 resultado = resultado % 10;
             }
 
-
             total1->agregarFinalS(resultado); //agrega el resultado de la multiplicacion a un nuevo arreglo
         }
+		//HAY QUE PENSAR EN COMO ACOMODAR carry CUANDO TIENE +9 DÍGITOS
+
         total1->agregarFinalS(carry); //agrega el acarreo 
         tot->agregar(total1); //agrega a la lista final el arreglo que contiene la multiplicacion
         //cada arreglo contiene la multiplicacion de toda una lista por un digito de la segunda lista
         carry = 0; //retorna el carry a su valor inicial
+		cout << "Numeros de elementos de tot: " << tot->numElementos() << endl;
     }
 
     for (int i = 0; i < tamC; i++) {//recorre los vectores
@@ -192,11 +194,17 @@ lista* lista::operator*(const lista* b) {//multiplicación
 
     }
     tot->recuperar(0)->agregarFinalS(0);
+	cout << "Numeros de elementos de tot: " << tot->numElementos() << endl;
 
     //********** Calculo Suma **********
-
-    auxiliar->agregar(sumaArr(tot->recuperar(0), tot->recuperar(1)));
-    for (int i = 2; i < tamC; i++) {
+	if (tot->numElementos() < 2) //VERIFICAR ESTO!!!!!! SI UNICAMENTE HAY UN ELEMENTO POR CELDA EN LOS ARREGLOS, ENTRA EN ESTA CONDICION
+	{
+		auxiliar->agregar(tot->recuperar(0));
+	}
+	else
+	{
+		auxiliar->agregar(sumaArr(tot->recuperar(0), tot->recuperar(1)));
+	}for (int i = 2; i < tamC; i++) {
 
         auxiliar->agregar(sumaArr(auxiliar->recuperar(0), tot->recuperar(i)));
 
@@ -302,7 +310,7 @@ lista* lista::operator-(lista* resta) {
     nodo* aux2 = resta ->_ultimo;
     lista* nl = new lista();
     
-    arreglo* insert;
+    arreglo* insert=new arreglo();
     int carry = 0;
     cout<<aux1->obtenerInfo()->toString()<<endl;
     cout<<aux2->obtenerInfo()->toString()<<endl;
