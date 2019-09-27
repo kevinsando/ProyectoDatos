@@ -38,6 +38,7 @@ public:
         lista* operator*(const lista*);
         lista* operator += (lista*);
         lista* operator + (lista*);
+        lista* operator - (lista*);
         int numElementos() const;
         void agregar(arreglo*);
         void agregarInicio(arreglo*);

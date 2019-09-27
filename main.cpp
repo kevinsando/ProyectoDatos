@@ -51,30 +51,7 @@ int main() {
     //    delete[] arr;
     //    std::cin.get();
     //    std::cin.get();
-    //    return 0;
-    //    arreglo *a1 = new arreglo();
-    //    arreglo *a2 = new arreglo();
-    //    lista *l1 = new lista();
-    //    lista *l2 = new lista();
-    //	integer* num = new integer(1232132);
-    //                a1->agregar(1);
-    //                a1->agregar(6);
-    //                a1->agregar(4);
-    //            
-    //                a2->agregar(4);
-    //                a2->agregar(5);
-    //                a2->agregar(6);
-    //    //            a2->agregar(8);
-    //    //            a2->agregar(7);
-    //                
-    //                l1->agregar(a1);
-    //                l2->agregar(a2);
-    //                //lista *l3 = l1->operator *(l2);
-    //                
-    //                cout<<" "<<l1->toString()<<endl;
-    //                cout<<" "<<l2->toString()<<endl;
-    //                cout<<"*__________________"<<endl;
-    //                //cout<<" "<<l3->toString()<<endl;
+
 
 
 
@@ -133,8 +110,9 @@ int main() {
     
     
     
+    //*** test Multiplicacion ***
     
-        arreglo *a1 = new arreglo();
+    arreglo *a1 = new arreglo();
     arreglo *a2 = new arreglo();
     lista *l1 = new lista();
     lista *l2 = new lista();
@@ -145,12 +123,12 @@ int main() {
 
     a2->agregar(2);
     a2->agregar(3);
-    a2->agregar(6);
+    a2->agregar(2);
 
     //                    
     l1->agregar(a1);
     l2->agregar(a2);
-    lista *l3 = l1->operator*(l2);
+    lista *l3 = l1->operator * (l2);
     //              
     cout << " " << l1->toString() << endl;
     cout << " " << l2->toString() << endl;
@@ -159,6 +137,8 @@ int main() {
 
     integer* num = new integer(l3);
     cout<<num->toString();
+    
+    
     
     return 0;
 }

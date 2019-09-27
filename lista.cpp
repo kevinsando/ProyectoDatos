@@ -215,15 +215,15 @@ arreglo* lista::sumaArr(arreglo* a1, arreglo* a2) {//recibe dos arreglos para su
     cout << endl;
     int a = 0, b = 0, carry = 0;
 
-    cout << a1->obtenerEsp(9) << endl;//test
-    cout << a2->obtenerEsp(9) << endl;//test
+    cout << a1->obtenerEsp(9) << endl; //test
+    cout << a2->obtenerEsp(9) << endl; //test
 
     for (int i = 8; i >= 0; i--) {//recorre los dos arreglos
         a = a1->obtenerEsp(i);
         b = a2->obtenerEsp(i);
 
         cout << endl;
-        a += b += carry;//suma de los dos arreglos
+        a += b += carry; //suma de los dos arreglos
         if (a > 9) {//acarreo
             carry = 1;
             a -= 10;
@@ -231,7 +231,7 @@ arreglo* lista::sumaArr(arreglo* a1, arreglo* a2) {//recibe dos arreglos para su
             carry = 0;
         }
 
-        total->agregarFinalS(a);//agrega al arreglo la suma de digitos 
+        total->agregarFinalS(a); //agrega al arreglo la suma de digitos 
 
     }
     if (carry == 1) {//acarreo
@@ -248,6 +248,7 @@ lista* lista::operator+(lista* plus) {
     nodo* aux1 = this->_ultimo;
     nodo* aux2 = plus ->_ultimo;
     lista* nl = new lista();
+    
     arreglo* insert;
     int carry = 0;
     while (aux1 != NULL && aux2 != NULL) {
@@ -265,16 +266,16 @@ lista* lista::operator+(lista* plus) {
         insert = new arreglo(aux1->obtenerInfo());
         nl->agregarInicio(insert);
         aux1 = aux1->obtenerAnterior();
-        if(carry>0){
-            insert->setNumber(8,insert->obtenerEsp(8)+1);
+        if (carry > 0) {
+            insert->setNumber(8, insert->obtenerEsp(8) + 1);
         }
     }
     while (aux2 != NULL) {
         insert = new arreglo(aux2->obtenerInfo());
         nl->agregarInicio(insert);
         aux2 = aux2->obtenerAnterior();
-        if(carry>0){
-            insert->setNumber((insert->obtenerEsp(8)+1),8);
+        if (carry > 0) {
+            insert->setNumber((insert->obtenerEsp(8) + 1), 8);
         }
     }
     return nl;
@@ -294,6 +295,33 @@ arreglo* lista::sumarArr(arreglo* a, arreglo* b, int& carry) { //METODO DE JASSO
         r->agregarFinal(x);
     }
     return r;
+}
+
+lista* lista::operator-(lista* resta) {
+    nodo* aux1 = this->_ultimo;
+    nodo* aux2 = resta ->_ultimo;
+    lista* nl = new lista();
+    
+    arreglo* insert;
+    int carry = 0;
+    cout<<aux1->obtenerInfo()->toString()<<endl;
+    cout<<aux2->obtenerInfo()->toString()<<endl;
+    cout<<endl;
+    
+    while (aux1->obtenerAnterior()!= NULL && aux2->obtenerAnterior()!= NULL) {
+        int x;
+        for (int i = 8; i >= 0; i--) {
+            x = aux1->obtenerInfo()->obtenerEsp(i) - aux2->obtenerInfo()->obtenerEsp(i);
+
+            insert->agregarFinal(x);
+        }
+        nl->agregarInicio(insert);
+        aux1 = aux1->obtenerAnterior();
+        aux2 = aux2->obtenerAnterior();
+    }
+    
+    
+    return nl;
 }
 
 nodo::nodo(arreglo* info, nodo* siguiente, nodo * anterior) :

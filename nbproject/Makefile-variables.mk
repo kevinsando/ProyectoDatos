@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=MinGW-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/MinGW-Windows
-CND_ARTIFACT_NAME_Debug=proyectodatos
-CND_ARTIFACT_PATH_Debug=dist/Debug/MinGW-Windows/proyectodatos
+CND_ARTIFACT_NAME_Debug=proyectodatosprueba
+CND_ARTIFACT_PATH_Debug=dist/Debug/MinGW-Windows/proyectodatosprueba
 CND_PACKAGE_DIR_Debug=dist/Debug/MinGW-Windows/package
-CND_PACKAGE_NAME_Debug=proyectodatos.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/MinGW-Windows/package/proyectodatos.tar
+CND_PACKAGE_NAME_Debug=proyectodatosprueba.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/MinGW-Windows/package/proyectodatosprueba.tar
 # Release configuration
 CND_PLATFORM_Release=MinGW-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/MinGW-Windows
-CND_ARTIFACT_NAME_Release=proyectodatos
-CND_ARTIFACT_PATH_Release=dist/Release/MinGW-Windows/proyectodatos
+CND_ARTIFACT_NAME_Release=proyectodatosprueba
+CND_ARTIFACT_PATH_Release=dist/Release/MinGW-Windows/proyectodatosprueba
 CND_PACKAGE_DIR_Release=dist/Release/MinGW-Windows/package
-CND_PACKAGE_NAME_Release=proyectodatos.tar
-CND_PACKAGE_PATH_Release=dist/Release/MinGW-Windows/package/proyectodatos.tar
+CND_PACKAGE_NAME_Release=proyectodatosprueba.tar
+CND_PACKAGE_PATH_Release=dist/Release/MinGW-Windows/package/proyectodatosprueba.tar
 #
 # include compiler specific variables
 #
