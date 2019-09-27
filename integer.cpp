@@ -1,5 +1,6 @@
 #include "integer.h"
 
+
 integer::integer(lista* l) {
 	valor = l;
 }

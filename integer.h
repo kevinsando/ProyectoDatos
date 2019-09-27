@@ -4,6 +4,7 @@
 #include "string"
 #include <sstream>
 using namespace std;
+
 class integer {
 public:
     integer(lista*);

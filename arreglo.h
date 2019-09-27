@@ -2,6 +2,7 @@
 #define ARREGLO_H
 #include "string"
 
+
 class arreglo {
 public:
     arreglo();

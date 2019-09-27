@@ -1,5 +1,4 @@
 #include <vector>
-
 #include "Lista.h"
 #include "sstream"
 #include "string"
