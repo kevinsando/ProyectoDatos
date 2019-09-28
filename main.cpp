@@ -161,6 +161,20 @@ else
 {
 	cout<< "son iguales";
 }
+arreglo* a20 =new arreglo();
+arreglo* a30 = new arreglo();
+lista *l10 = new lista();
+lista *l20 = new lista();
+a20->agregar(55555);
+a30->agregar(8888);
+l10->agregar(a20);
+l10->agregar(a30);
+cout<<endl;
+l20= l20->operator =(l10);
+cout<<"L10: "<<l10->toString()<<endl;
+cout<<"L20: "<<l20->toString()<<endl;
+
+
 //unsigned t0, t1;
 //
 //t0 = clock();
