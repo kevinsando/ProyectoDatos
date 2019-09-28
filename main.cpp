@@ -1,4 +1,5 @@
 #include<iostream>
+#include <ctime>
 #include<cstring>
 #include "lista.h"
 #include "arreglo.h"
@@ -140,9 +141,21 @@ int main() {
     */
 
     /*TEST METODOS FORMULAS*/
+unsigned t0, t1;
+
+t0 = clock();
 int n = 1000;
 lista* l1 = lista::fibonacci(n);
 	cout<<"FIBONACCI DE "<<n<<endl<<l1->toString();
+	delete l1;
+	// Code to execute
+	t1 = clock();
+	double time = (double(t1 - t0) / CLOCKS_PER_SEC);
+	cout << "Execution Time: " << time << endl;
+	//lista* l1 = new lista();
+//integer* num = new integer(l1);
+//num->parse("43466557686937456435688527675040625802564660517371780402481729089536555417949051890403879840079255169295922593080322634775209689623239873322471161642996440906533187938298969649928516003704476137795166849228875");
+//cout << num->toString(); 
 	cin.get();
     return 0;
 }

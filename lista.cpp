@@ -255,6 +255,7 @@ lista* lista::operator+=(lista* plus) {
 }
 
 lista* lista::operator+(lista* plus) {
+	
     nodo* aux1 = this->_ultimo;
     nodo* aux2 = plus ->_ultimo;
     lista* nl = new lista();
@@ -262,8 +263,7 @@ lista* lista::operator+(lista* plus) {
     arreglo* insert;
     int carry = 0;
     while (aux1 != NULL && aux2 != NULL) {
-        insert = sumarArr(aux1->obtenerInfo(), aux2->obtenerInfo(), carry);
-        nl->agregarInicio(insert);
+        nl->agregarInicio(sumarArr(aux1->obtenerInfo(), aux2->obtenerInfo(), carry));
         aux1 = aux1->obtenerAnterior();
         aux2 = aux2->obtenerAnterior();
     }
@@ -279,7 +279,7 @@ lista* lista::operator+(lista* plus) {
         if (carry > 0) {
             insert->setNumber(8, insert->obtenerEsp(8) + 1);
         }
-    }
+	}
     while (aux2 != NULL) {
         insert = new arreglo(aux2->obtenerInfo());
         nl->agregarInicio(insert);
@@ -288,6 +288,8 @@ lista* lista::operator+(lista* plus) {
             insert->setNumber((insert->obtenerEsp(8) + 1), 8);
         }
     }
+	delete aux1;
+	delete aux2;
     return nl;
 }
 
@@ -354,25 +356,27 @@ lista* lista::fibonacci(int n)
 	arrAux2->agregarFinal(1);
 	b->agregar(arrAux2);//a=1
 	return fibonacci(n,a,b);
+	delete a;
+	delete b;
 }
 lista * lista::fibonacci(int n, lista* a, lista* b)
 {
-	int carry=0;
-	long long x = 0;
-	lista *aux = new lista();
-	
-	if (n == 0)
+	lista* z = new lista();
+	/*if (n == 0)
 	{
-		aux=a;
-		return aux;
+		return a;
 	}
 	if (n == 1)
 	{
-		
-		aux = b;
-		return aux;
+		return b;
 	}
-	return fibonacci(n - 1, b, a->operator+(b));
+	return fibonacci(n - 1, b, a->operator+(b));*/
+	for (int i = 0; i < n-1; i++) {
+		z = a->operator+(b);
+		a = b;
+		b = z;
+	}
+	return z;
 }
 
 lista* lista::restar(lista* r1, lista* resta, bool neg) {
