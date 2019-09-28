@@ -163,16 +163,28 @@ else
 }
 arreglo* a20 =new arreglo();
 arreglo* a30 = new arreglo();
+arreglo* a40 =new arreglo();
+arreglo* a50 = new arreglo();
 lista *l10 = new lista();
 lista *l20 = new lista();
+
+
 a20->agregar(55555);
 a30->agregar(8888);
+
+a40->agregar(11111);
+a50->agregar(1111);
+
 l10->agregar(a20);
 l10->agregar(a30);
+l20->agregar(a40);
+l20->agregar(a50);
 cout<<endl;
-l20= l20->operator =(l10);
 cout<<"L10: "<<l10->toString()<<endl;
 cout<<"L20: "<<l20->toString()<<endl;
+lista *l30= l10->operator +=(l20);
+
+cout<<"L30 SUMA: "<<l30->toString()<<endl;
 
 
 //unsigned t0, t1;
@@ -190,7 +202,7 @@ cout<<"L20: "<<l20->toString()<<endl;
 //integer* num = new integer(l1);
 //num->parse("43466557686937456435688527675040625802564660517371780402481729089536555417949051890403879840079255169295922593080322634775209689623239873322471161642996440906533187938298969649928516003704476137795166849228875");
 //cout << num->toString(); 
-	cin.get();
+//	cin.get();
     return 0;
 }
 
