@@ -25,28 +25,31 @@ private:
 class lista {
 public:
 
-        lista();
-        lista(const lista &);
-        virtual ~lista();
-        lista& operator=(const lista&);
-        lista* operator*(const lista*);
-        lista* operator += (lista*);
-        lista* operator + (lista*);
-        lista* operator - (lista*);
-		bool operator ==(lista*);
-		bool operator !=(lista*);
-		static lista* fibonacci(int);
-		 static lista* fibonacci(int,lista*,lista*);
-        int numElementos() const;
-        void agregar(arreglo*);
-        void agregarInicio(arreglo*);
-        arreglo* sumaArr(arreglo*,arreglo*);
-        lista* restar(lista*,lista*,bool);
-        void extraer(int);
-//        int* extraerUltimo();
-        arreglo* recuperar(int) const;
-        arreglo* sumarArr(arreglo*,arreglo*,int&); //Jasson
-        std::string toString();
+    lista();
+    lista(const lista &);
+    virtual ~lista();
+    
+    lista* operator*(const lista*);
+    lista* operator+=(lista*);
+    lista* operator+(lista*);
+    lista* operator-(lista*);
+    bool operator==(lista*);
+    bool operator!=(lista*);
+    
+    lista* operator =(lista*);
+    
+    static lista* fibonacci(int);
+    static lista* fibonacci(int, lista*, lista*);
+    int numElementos() const;
+    void agregar(arreglo*);
+    void agregarInicio(arreglo*);
+    arreglo* sumaArr(arreglo*, arreglo*);
+    lista* restar(lista*, lista*, bool);
+    void extraer(int);
+   
+    arreglo* recuperar(int) const;
+    arreglo* sumarArr(arreglo*, arreglo*, int&); //Jasson
+    std::string toString();
 
 private:
     int _n;

@@ -27,29 +27,12 @@ lista::lista(const lista &otra)
 }
 
 lista::~lista() {
-
-}
-
-lista& lista::operator=(const lista &otra) {
-    if (this != &otra) {
-        _n = 0;
-        _primero = _ultimo = NULL;
-        nodo* cursor = otra._primero;
-        while (cursor != NULL) {
-            nodo* nuevo = new nodo(cursor->obtenerInfo());
-            if (_primero == NULL) {
-                _primero = _ultimo = nuevo;
-            } else {
-                _ultimo->establecerSiguiente(nuevo);
-                nuevo->establecerAnterior(_ultimo);
-                _ultimo = nuevo;
-            }
-            _n++;
-            cursor = cursor->obtenerSiguiente();
-        }
+    if (_primero != NULL) {
+        delete _primero;
     }
-    return *this;
 }
+
+
 
 int lista::numElementos() const {
     return _n;
@@ -255,7 +238,7 @@ lista* lista::operator+=(lista* plus) {
 }
 
 lista* lista::operator+(lista* plus) {
-	
+
     nodo* aux1 = this->_ultimo;
     nodo* aux2 = plus ->_ultimo;
     lista* nl = new lista();
@@ -279,7 +262,7 @@ lista* lista::operator+(lista* plus) {
         if (carry > 0) {
             insert->setNumber(8, insert->obtenerEsp(8) + 1);
         }
-	}
+    }
     while (aux2 != NULL) {
         insert = new arreglo(aux2->obtenerInfo());
         nl->agregarInicio(insert);
@@ -288,8 +271,8 @@ lista* lista::operator+(lista* plus) {
             insert->setNumber((insert->obtenerEsp(8) + 1), 8);
         }
     }
-	delete aux1;
-	delete aux2;
+    delete aux1;
+    delete aux2;
     return nl;
 }
 
@@ -333,7 +316,7 @@ lista* lista::operator-(lista* resta) {
                 auxi = aux1;
                 aux1 = aux2;
                 aux2 = auxi;
-                
+
                 aux1 = aux1->obtenerSiguiente();
                 aux2 = aux2->obtenerSiguiente();
             }
@@ -345,38 +328,38 @@ lista* lista::operator-(lista* resta) {
 
     return nl;
 }
-lista* lista::fibonacci(int n)
-{
-	lista* a = new lista();
-	lista* b = new lista();
-	arreglo* arrAux = new arreglo();
-	arreglo* arrAux2 = new arreglo();
-	arrAux->agregarFinal(0);
-	a->agregar(arrAux);//b=0
-	arrAux2->agregarFinal(1);
-	b->agregar(arrAux2);//a=1
-	return fibonacci(n,a,b);
-	delete a;
-	delete b;
+
+lista* lista::fibonacci(int n) {
+    lista* a = new lista();
+    lista* b = new lista();
+    arreglo* arrAux = new arreglo();
+    arreglo* arrAux2 = new arreglo();
+    arrAux->agregarFinal(0);
+    a->agregar(arrAux); //b=0
+    arrAux2->agregarFinal(1);
+    b->agregar(arrAux2); //a=1
+    return fibonacci(n, a, b);
+    delete a;
+    delete b;
 }
-lista * lista::fibonacci(int n, lista* a, lista* b)
-{
-	lista* z = new lista();
-	/*if (n == 0)
-	{
-		return a;
-	}
-	if (n == 1)
-	{
-		return b;
-	}
-	return fibonacci(n - 1, b, a->operator+(b));*/
-	for (int i = 0; i < n-1; i++) {
-		z = a->operator+(b);
-		a = b;
-		b = z;
-	}
-	return z;
+
+lista * lista::fibonacci(int n, lista* a, lista* b) {
+    lista* z = new lista();
+    /*if (n == 0)
+    {
+            return a;
+    }
+    if (n == 1)
+    {
+            return b;
+    }
+    return fibonacci(n - 1, b, a->operator+(b));*/
+    for (int i = 0; i < n - 1; i++) {
+        z = a->operator+(b);
+        a = b;
+        b = z;
+    }
+    return z;
 }
 
 lista* lista::restar(lista* r1, lista* resta, bool neg) {
@@ -439,32 +422,57 @@ lista* lista::restar(lista* r1, lista* resta, bool neg) {
     return nl;
 
 }
-bool lista::operator ==(lista* otra){
-    nodo* _actual1 =this->_primero;
+
+bool lista::operator==(lista* otra) {
+    nodo* _actual1 = this->_primero;
     nodo* _actual2 = otra->_primero;
-    bool resultado=false;
-    
-    while(_actual1 !=NULL && _actual2 !=NULL){
-        if(_actual1->obtenerInfo()->operator == (_actual2->obtenerInfo())){
+    bool resultado = false;
+
+    while (_actual1 != NULL && _actual2 != NULL) {
+        if (_actual1->obtenerInfo()->operator==(_actual2->obtenerInfo())) {
             resultado = true;
         }
-        _actual1=_actual1->obtenerSiguiente();
-        _actual2=_actual2->obtenerSiguiente();
+        _actual1 = _actual1->obtenerSiguiente();
+        _actual2 = _actual2->obtenerSiguiente();
     }
     return resultado;
 }
-bool lista::operator!=(lista* otro)
-{
 
-	if (operator==(otro))
-	{
-		return false;
-	}
-	else
-	{
-		return true;
-	}
+bool lista::operator!=(lista* otro) {
+
+    if (operator==(otro)) {
+        return false;
+    } else {
+        return true;
+    }
 }
+
+lista* lista::operator=( lista *otra) {
+    if (this != otra) {
+        if (_primero != NULL) {
+            delete _primero;
+        }
+
+        _primero = NULL;
+        nodo* actual = otra->_primero;
+        while (actual != NULL) {
+            nodo* aux = new nodo(actual->obtenerInfo());
+
+            if (_primero == NULL) {
+                _primero = aux;
+            }
+
+            if (_ultimo != NULL) {
+                _ultimo->establecerSiguiente(aux);
+            }
+
+            actual = actual->obtenerSiguiente();
+            _ultimo = aux;
+        }
+    }
+    return this;
+}
+
 nodo::nodo(arreglo* info, nodo* siguiente, nodo * anterior) :
 _info(info), _siguiente(siguiente), _anterior(anterior) {
 
