@@ -312,6 +312,7 @@ lista* lista::operator-(lista* resta) {
     nodo* aux1 = this->_primero;
     nodo* aux2 = resta ->_primero;
     lista* auxiliar = new lista();
+    nodo* auxi = NULL;
     lista* nl = new lista();
 
 
@@ -326,12 +327,18 @@ lista* lista::operator-(lista* resta) {
         //            }
         if (aux1->obtenerInfo()->obtenerEsp(0) < aux2->obtenerInfo()->obtenerEsp(0)) {
             //nl = restar(resta, this, false);
-            auxiliar = esta;
-            esta = resta;
-            resta = auxiliar;
+            while (aux1 != NULL && aux2 != NULL) {
+                auxi = aux1;
+                aux1 = aux2;
+                aux2 = auxi;
+                
+                aux1 = aux1->obtenerSiguiente();
+                aux2 = aux2->obtenerSiguiente();
+            }
         }
 
     }
+
     nl = restar(esta, resta, true);
 
     return nl;
@@ -397,7 +404,20 @@ lista* lista::restar(lista* r1, lista* resta, bool neg) {
     return nl;
 
 }
-
+bool lista::operator ==(lista* otra){
+    nodo* _actual1 =this->_primero;
+    nodo* _actual2 = otra->_primero;
+    bool resultado=false;
+    
+    while(_actual1 !=NULL && _actual2 !=NULL){
+        if(_actual1->obtenerInfo()->operator == (_actual2->obtenerInfo())){
+            resultado = true;
+        }
+        _actual1=_actual1->obtenerSiguiente();
+        _actual2=_actual2->obtenerSiguiente();
+    }
+    return resultado;
+}
 nodo::nodo(arreglo* info, nodo* siguiente, nodo * anterior) :
 _info(info), _siguiente(siguiente), _anterior(anterior) {
 
