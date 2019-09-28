@@ -308,26 +308,31 @@ arreglo* lista::sumarArr(arreglo* a, arreglo* b, int& carry) { //METODO DE JASSO
 }
 
 lista* lista::operator-(lista* resta) {
-
+    lista* esta = this;
     nodo* aux1 = this->_primero;
     nodo* aux2 = resta ->_primero;
+    lista* auxiliar = new lista();
     lista* nl = new lista();
-    
 
-        if (aux2->obtenerInfo()->obtenerEsp(0) < 0) {
-            nl = this->operator+(resta);
-        } else {
 
-            if (aux1->obtenerInfo()->obtenerEsp(8) >= aux2->obtenerInfo()->obtenerEsp(8)) {
-                nl = restar(this, resta, true); //normal
+    if (aux2->obtenerInfo()->obtenerEsp(0) < 0) {
+        nl = this->operator+(resta);
+    } else {
 
-            }
-            if (aux1->obtenerInfo()->obtenerEsp(8) < aux2->obtenerInfo()->obtenerEsp(8)) {
-                nl = restar(resta, this, false);
-
-            }
+        //            if (aux1->obtenerInfo()->obtenerEsp(0) > aux2->obtenerInfo()->obtenerEsp(0)) {
+        //                nl = restar(esta, resta, true); //normal
+        //                
+        //
+        //            }
+        if (aux1->obtenerInfo()->obtenerEsp(0) < aux2->obtenerInfo()->obtenerEsp(0)) {
+            //nl = restar(resta, this, false);
+            auxiliar = esta;
+            esta = resta;
+            resta = auxiliar;
         }
 
+    }
+    nl = restar(esta, resta, true);
 
     return nl;
 }
