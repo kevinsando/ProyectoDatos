@@ -32,8 +32,6 @@ lista::~lista() {
     }
 }
 
-
-
 int lista::numElementos() const {
     return _n;
 }
@@ -230,11 +228,6 @@ arreglo* lista::sumaArr(arreglo* a1, arreglo* a2) {//recibe dos arreglos para su
         total->agregarFinalS(1);
     }
     return total;
-}
-
-lista* lista::operator+=(lista* plus) {
-    return NULL;
-    //implementar Jasson
 }
 
 lista* lista::operator+(lista* plus) {
@@ -447,7 +440,7 @@ bool lista::operator!=(lista* otro) {
     }
 }
 
-lista* lista::operator=( lista *otra) {
+lista* lista::operator=(lista *otra) {
     if (this != otra) {
         if (_primero != NULL) {
             delete _primero;
@@ -472,6 +465,34 @@ lista* lista::operator=( lista *otra) {
     }
     return this;
 }
+
+lista* lista::operator+=(lista* otra) {
+    lista *aux3 = this;
+    aux3 = this->operator+(otra);
+
+    return aux3;
+}
+
+lista* lista::operator-=(lista*otra) {
+    lista *aux3 = this;
+    aux3 = this->operator-(otra);
+
+    return aux3;
+}
+
+lista* lista::operator*=(lista*otra) {
+    lista *aux3 = this;
+    aux3 = this->operator*(otra);
+
+    return aux3;
+}
+
+lista*  lista::operator/=(lista*otra) {
+    cerr << "EN DESARROLLO..." << endl;
+    return NULL;
+}
+
+//---------------------------------NODO-----------------------------------------
 
 nodo::nodo(arreglo* info, nodo* siguiente, nodo * anterior) :
 _info(info), _siguiente(siguiente), _anterior(anterior) {
