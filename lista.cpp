@@ -445,9 +445,9 @@ bool lista::operator ==(lista* otra){
     bool resultado=false;
     
     while(_actual1 !=NULL && _actual2 !=NULL){
-       /* if(_actual1->obtenerInfo()->operator == (_actual2->obtenerInfo())){
+        if(_actual1->obtenerInfo()->operator == (_actual2->obtenerInfo())){
             resultado = true;
-        }*/
+        }
         _actual1=_actual1->obtenerSiguiente();
         _actual2=_actual2->obtenerSiguiente();
     }

@@ -9,6 +9,7 @@ public:
     arreglo(arreglo* orig);
     virtual ~arreglo();
     void agregar(int);
+	bool operator==(arreglo*);
     void agregarFinal(int);
     void agregarFinalS(int);
     void agregaPorPartes(int);

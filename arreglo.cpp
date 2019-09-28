@@ -75,7 +75,26 @@ int arreglo::getK() {
 int arreglo::obtenerEsp(int i) {
     return _vector[i];
 }
-
+bool arreglo::operator==(arreglo* otro)
+{
+	bool v = true;
+	if (_k != otro->getK()) {
+		v = false; 
+		return false;
+	}
+	else
+	{
+		for (int i = 0; i < _k; i++)
+		{
+				if (_vector[i] != otro->_vector[i])
+				{
+					v = false;
+					return v;
+				}
+		}
+	}
+	return v;
+}
 void arreglo::agregarFinal(int e) {
     if (last >= 0) {
         _vector[last--] = e;
