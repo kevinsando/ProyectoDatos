@@ -153,13 +153,13 @@ l1->agregar(a1);
 l2->agregar(a2);
 cout << l1->toString() << endl;
 cout << l2->toString() << endl;
-if (l1->operator==(l2))
+if (l1->operator!=(l2))
 {
-	cout << "Son iguales";
+	cout << "Son distintos";
 }
 else
 {
-	cout<< "son diferentes";
+	cout<< "son iguales";
 }
 //unsigned t0, t1;
 //

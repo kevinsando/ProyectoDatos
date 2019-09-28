@@ -95,6 +95,18 @@ bool arreglo::operator==(arreglo* otro)
 	}
 	return v;
 }
+bool arreglo::operator!=(arreglo* otro)
+{
+
+	if (operator== (otro))
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
 void arreglo::agregarFinal(int e) {
     if (last >= 0) {
         _vector[last--] = e;

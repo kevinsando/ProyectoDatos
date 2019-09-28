@@ -453,6 +453,18 @@ bool lista::operator ==(lista* otra){
     }
     return resultado;
 }
+bool lista::operator!=(lista* otro)
+{
+
+	if (operator==(otro))
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
 nodo::nodo(arreglo* info, nodo* siguiente, nodo * anterior) :
 _info(info), _siguiente(siguiente), _anterior(anterior) {
 

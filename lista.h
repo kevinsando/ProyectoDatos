@@ -34,6 +34,7 @@ public:
         lista* operator + (lista*);
         lista* operator - (lista*);
 		bool operator ==(lista*);
+		bool operator !=(lista*);
 		static lista* fibonacci(int);
 		 static lista* fibonacci(int,lista*,lista*);
         int numElementos() const;
