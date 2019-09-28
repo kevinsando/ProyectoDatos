@@ -231,6 +231,95 @@ arreglo* lista::sumaArr(arreglo* a1, arreglo* a2) {//recibe dos arreglos para su
     return total;
 }
 
+
+lista* lista::multiply(lista* m) {
+    nodo* aux1 = this->_primero;
+    nodo* aux2 = m->_primero;
+    arreglo* a = aux1->obtenerInfo();
+    arreglo* b = aux2->obtenerInfo();
+    arreglo* celda = new arreglo;
+
+
+    lista* agregar = new lista();
+    lista* resultado = new lista();
+    resultado->agregar(new arreglo());
+
+    int zero = 0;
+    long long multiplication;
+    int count = 0;
+    int aux;
+    int result = 0;
+    int auxCero=0;
+    //
+    //    while (aux2 != NULL) {
+   // while (aux1 != NULL) {
+        for (int j = 8; j >= aux2->obtenerInfo()->getLast(); j--) {
+            //cout << "mult por" << b->obtenerEsp(j);
+            if(b->obtenerEsp(j)!=0){
+            for (int i = 8; i >= 0; i--) {
+                multiplication = (long long) a->obtenerEsp(i)* (long long) b->obtenerEsp(j);
+                //cout << "Multiplication: " << multiplication << endl;
+
+                    for (int i = 0; i < zero; i++) {
+                        if(i==8){
+                            agregar->agregarInicio(celda);
+                            celda=new arreglo();
+                            //cout<<"dassssssssss";
+                        }else{
+                            celda->agregarFinal(0);
+                        }
+                    }
+                if (multiplication > 0) {
+                    zero++;
+                    zero += (8 - j);
+                }
+                while (multiplication > 0) {
+                    aux = multiplication % 10;
+                    multiplication /= 10;
+                    for (int a = 0; a < count; a++) {
+                        aux *= 10;
+                    }
+                    result += aux;
+                    count++;
+                    if (count == 9 || multiplication == 0) {
+                        count = 0;
+                        celda->agregarFinal(result);
+                        //cout << "celda: " << celda->toString() << endl;
+                        if(celda->obtenerEsp(0)!=0&&multiplication!=0){
+                            agregar->agregarInicio(celda);
+                            celda=new arreglo();
+                        }
+                        result = 0;
+                    }
+                }
+                agregar->agregarInicio(celda);
+                //cout<<resultado->toString()<<"+"<<agregar->toString()<<endl<<endl;
+                resultado = resultado->operator+(agregar);
+                celda = new arreglo();
+                agregar->eliminarPrimero();
+            }
+            }
+        }
+        //aux1 = aux1->obtenerAnterior();
+    //}
+    //    }aux2=aux2->obtenerAnterior();
+    //resultado->agregar(suma);
+    return resultado;
+}
+
+void lista::eliminarPrimero() {
+    nodo* aux = _primero;
+    if (_ultimo == _primero) {
+        _ultimo = _primero = NULL;
+    } else {
+        _primero = _primero->obtenerSiguiente();
+        _primero->establecerAnterior(NULL);
+    }
+    delete aux;
+}
+
+
+
 lista* lista::operator+(lista* plus) {
 
     nodo* aux1 = this->_ultimo;

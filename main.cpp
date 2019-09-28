@@ -141,51 +141,87 @@ int main() {
     */
 
     /*TEST METODOS FORMULAS*/
-arreglo* a1 = new arreglo();
-arreglo* a2 = new arreglo();
-lista* l1 = new lista();
-lista* l2 = new lista();
-a1->agregar(123456789);
-a1->agregar(987654321);
-a2->agregar(123456789);
-a2->agregar(987654321);
-l1->agregar(a1);
-l2->agregar(a2);
-cout << l1->toString() << endl;
-cout << l2->toString() << endl;
-if (l1->operator!=(l2))
-{
-	cout << "Son distintos";
-}
-else
-{
-	cout<< "son iguales";
-}
+//arreglo* a1 = new arreglo();
+//arreglo* a2 = new arreglo();
+//lista* l1 = new lista();
+//lista* l2 = new lista();
+//a1->agregar(123456789);
+//a1->agregar(987654321);
+//a2->agregar(123456789);
+//a2->agregar(987654321);
+//l1->agregar(a1);
+//l2->agregar(a2);
+//cout << l1->toString() << endl;
+//cout << l2->toString() << endl;
+//if (l1->operator!=(l2))
+//{
+//	cout << "Son distintos";
+//}
+//else
+//{
+//	cout<< "son iguales";
+//}
+//
+//arreglo* a20 =new arreglo();
+//arreglo* a30 = new arreglo();
+//lista *l10 = new lista();
+//lista *l20 = new lista();
+//
+//
+//a20->agregarFinal(55555);
+//a30->agregarFinal(44444);
+//
+//a20->agregarFinal(11111);
+//a30->agregarFinal(1111);
+//
+//
+//l10->agregar(a20);
+//l20->agregar(a30);
+//
+//
+//
+//cout<<endl;
+//cout<<l10->toString()<<" + "<<l20->toString()<<endl;
+//
+//l10 = l10->operator +=(l20);
+//
+//cout<<"L10 SOBRECARGA: "<<l10->toString()<<endl;
 
-arreglo* a20 =new arreglo();
-arreglo* a30 = new arreglo();
-lista *l10 = new lista();
-lista *l20 = new lista();
 
 
-a20->agregarFinal(55555);
-a30->agregarFinal(44444);
+//TEST MULTIPLY
 
-a20->agregarFinal(11111);
-a30->agregarFinal(1111);
+    lista *l1 = new lista();
+    lista *l2 = new lista();
+    lista* l3 = new lista();
+    arreglo *a1 = new arreglo();
+    arreglo *a2 = new arreglo();
+    
+    a1->agregarFinal(555555555);
+    a1->agregarFinal(474566454);
+    a1->agregarFinal(999999999);
+    a1->agregarFinal(999999999);
+    a1->agregarFinal(243435556);
+    a1->agregarFinal(999999999);
+    a1->agregarFinal(333333333);
+    a1->agregarFinal(999999999);
+    a1->agregarFinal(222222222);
+    
+    
+    a2->agregarFinal(675777567);    
+
+    
+    l1->agregar(a1);
+    l2->agregar(a2);
 
 
-l10->agregar(a20);
-l20->agregar(a30);
+//    
+    cout<<l1->toString()<<" * "<<l2->toString()<<endl;
+    l3=l1->multiply(l2);
+
+    cout<<l3->toString();
 
 
-
-cout<<endl;
-cout<<l10->toString()<<" + "<<l20->toString()<<endl;
-
-l10 = l10->operator +=(l20);
-
-cout<<"L10 SOBRECARGA: "<<l10->toString()<<endl;
 
 
 //unsigned t0, t1;

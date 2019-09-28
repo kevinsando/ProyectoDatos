@@ -60,12 +60,38 @@ void arreglo::agregaPorPartes(int e) {
 }
 
 string arreglo::toString() {
+    //ORIGINAL
+//    stringstream s;
+//    s << "[";
+//    for (int i = 0; i < _n; i++) {
+//        s << _vector[i] << " ";
+//    }
+//    s << "]";
+//    return s.str();
+    
+    //CEROS
+        int size = 10000000;
     stringstream s;
-    s << "[";
     for (int i = 0; i < _n; i++) {
-        s << _vector[i] << " ";
+        if (_vector[i] > 0) {
+            while (size > _vector[i]) {
+                s << 0;
+                size /= 10;
+            }
+            s << _vector[i] << " ";
+        }
+        size = 10000000;
     }
-    s << "]";
+    return s.str();
+}
+
+string arreglo::primeroToString() {
+    stringstream s;
+    for (int i = 0; i < _n; i++) {
+        //if(_vector[i]>0){
+            s<<_vector[i]<<" ";
+        //}
+    }
     return s.str();
 }
 
@@ -127,6 +153,19 @@ void arreglo::agregarFinalS(int e) {
     } else {
         //error
     }
+}
+
+int arreglo::getLast(){
+    return last;
+}
+
+bool arreglo::isEmpty(){
+    for(int i=0;i<9;i++){
+        if(_vector[i]!=0){
+            return false;
+        }
+    }
+    return true;
 }
 
 void arreglo::setNumber(int n, int pos) {
