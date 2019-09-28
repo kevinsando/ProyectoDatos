@@ -2,6 +2,7 @@
 #include "sstream"
 #include <iostream>
 
+
 using namespace std;
 
 arreglo::arreglo() : _k(0), _vector(new int[9]), _n(9), last(8) {

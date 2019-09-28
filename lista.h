@@ -4,6 +4,7 @@
 #include "string"
 #include "Arreglo.h"
 
+
 class nodo {
 public:
     nodo(arreglo*, nodo* = NULL, nodo* = NULL);
@@ -21,6 +22,7 @@ private:
     nodo* _siguiente;
     nodo* _anterior;
 };
+
 
 class lista {
 public:

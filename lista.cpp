@@ -5,6 +5,7 @@
 #include "iostream"
 using namespace std;
 
+
 lista::lista()
 : _n(0), _primero(NULL), _ultimo(NULL) {
 }
@@ -469,7 +470,7 @@ lista* lista::operator=(lista *otra) {
 lista* lista::operator+=(lista* otra) {
     lista *aux3 = this;
     aux3 = this->operator+(otra);
-    
+
     *this = aux3;
     return aux3;
 }
@@ -478,6 +479,7 @@ lista* lista::operator-=(lista*otra) {
     lista *aux3 = this;
     aux3 = this->operator-(otra);
 
+    *this = aux3;
     return aux3;
 }
 
@@ -485,10 +487,11 @@ lista* lista::operator*=(lista*otra) {
     lista *aux3 = this;
     aux3 = this->operator*(otra);
 
+    *this = aux3;
     return aux3;
 }
 
-lista*  lista::operator/=(lista*otra) {
+lista* lista::operator/=(lista*otra) {
     cerr << "EN DESARROLLO..." << endl;
     return NULL;
 }

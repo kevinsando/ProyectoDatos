@@ -1,8 +1,6 @@
 #ifndef ARREGLO_H
 #define ARREGLO_H
 #include "string"
-
-
 class arreglo {
 public:
     arreglo();
