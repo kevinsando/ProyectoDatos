@@ -79,7 +79,9 @@ int arreglo::obtenerEsp(int i) {
 void arreglo::agregarFinal(int e) {
     if (last >= 0) {
         _vector[last--] = e;
+        _k++;
     }
+
 }
 
 void arreglo::agregarFinalS(int e) {
@@ -100,8 +102,11 @@ void arreglo::setNumber(int n, int pos) {
     _vector[pos] = n;
 }
 
-void arreglo::editarEsp(int i, int e) {
-    if (i != 0) {
+void arreglo::editarEsp(int i, int e, bool n) {
+    if (i != 0 && !n) {
         _vector[i] -= e;
+    }
+    if (i != 0 && n) {
+        _vector[i] = _vector[i] * e;
     }
 }

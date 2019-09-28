@@ -12,7 +12,7 @@ public:
     void agregarFinal(int);
     void agregarFinalS(int);
     void agregaPorPartes(int);
-    void editarEsp(int,int);
+    void editarEsp(int,int,bool);
     int obtenerEsp(int);
     std::string toString();
     int getK();

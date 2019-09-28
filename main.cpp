@@ -119,17 +119,18 @@ int main() {
     //integer* num = new integer(1232132);
     
 
-   // a1->agregarFinal(88888888);
-   // a1->agregarFinal(666666666);
-    a1->agregarFinal(777777777);
+   
+   a1->agregarFinal(555555555);
+   a1->agregarFinal(777777777);
     
 //    a1->agregarFinal(5555);
 //    a1->agregarFinal(4444);
     
    
   // a2->agregarFinal(22922291);
-    //a2->agregarFinal(55555555);
-    a2->agregarFinal(839383933);
+    
+    a2->agregarFinal(222222222);
+    a2->agregarFinal(667666666);
 //    a2->agregarFinal(1111);
     //                    
     l1->agregar(a1);

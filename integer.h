@@ -10,7 +10,8 @@ public:
     integer(lista*);
 	integer(int);
 	integer(long);
-    integer(const integer& orig);
+    integer(const integer&);
+	 void parse(string);
     virtual ~integer();
     string toString();
 private:

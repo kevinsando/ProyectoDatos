@@ -37,6 +37,7 @@ public:
         void agregar(arreglo*);
         void agregarInicio(arreglo*);
         arreglo* sumaArr(arreglo*,arreglo*);
+        lista* restar(lista*,lista*,bool);
         void extraer(int);
 //        int* extraerUltimo();
         arreglo* recuperar(int) const;
