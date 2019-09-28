@@ -33,6 +33,9 @@ public:
         lista* operator += (lista*);
         lista* operator + (lista*);
         lista* operator - (lista*);
+		bool operator ==(lista*);
+		static lista* fibonacci(int);
+		 static lista* fibonacci(int,lista*,lista*);
         int numElementos() const;
         void agregar(arreglo*);
         void agregarInicio(arreglo*);

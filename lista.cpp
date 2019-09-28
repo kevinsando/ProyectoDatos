@@ -343,6 +343,37 @@ lista* lista::operator-(lista* resta) {
 
     return nl;
 }
+lista* lista::fibonacci(int n)
+{
+	lista* a = new lista();
+	lista* b = new lista();
+	arreglo* arrAux = new arreglo();
+	arreglo* arrAux2 = new arreglo();
+	arrAux->agregarFinal(0);
+	a->agregar(arrAux);//b=0
+	arrAux2->agregarFinal(1);
+	b->agregar(arrAux2);//a=1
+	return fibonacci(n,a,b);
+}
+lista * lista::fibonacci(int n, lista* a, lista* b)
+{
+	int carry=0;
+	long long x = 0;
+	lista *aux = new lista();
+	
+	if (n == 0)
+	{
+		aux=a;
+		return aux;
+	}
+	if (n == 1)
+	{
+		
+		aux = b;
+		return aux;
+	}
+	return fibonacci(n - 1, b, a->operator+(b));
+}
 
 lista* lista::restar(lista* r1, lista* resta, bool neg) {
     nodo* aux1 = r1->_ultimo;
@@ -410,9 +441,9 @@ bool lista::operator ==(lista* otra){
     bool resultado=false;
     
     while(_actual1 !=NULL && _actual2 !=NULL){
-        if(_actual1->obtenerInfo()->operator == (_actual2->obtenerInfo())){
+       /* if(_actual1->obtenerInfo()->operator == (_actual2->obtenerInfo())){
             resultado = true;
-        }
+        }*/
         _actual1=_actual1->obtenerSiguiente();
         _actual2=_actual2->obtenerSiguiente();
     }

@@ -12,6 +12,7 @@ public:
 	integer(long);
     integer(const integer&);
 	 void parse(string);
+
     virtual ~integer();
     string toString();
 private:

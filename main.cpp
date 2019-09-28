@@ -103,50 +103,47 @@ int main() {
 //    cout<<l3->toString();
 //    
     
-    
-    
-    
-    
-    
-    
-    
     //*** test Multiplicacion ***
     
-    arreglo *a1 = new arreglo();
-    arreglo *a2 = new arreglo();
-    lista *l1 = new lista();
-    lista *l2 = new lista();
-    //integer* num = new integer(1232132);
-    
-
-   
-   a1->agregarFinal(555555555);
-   a1->agregarFinal(777777777);
-    
-//    a1->agregarFinal(5555);
-//    a1->agregarFinal(4444);
-    
-   
-  // a2->agregarFinal(22922291);
-    
-    a2->agregarFinal(222222222);
-    a2->agregarFinal(667666666);
-//    a2->agregarFinal(1111);
-    //                    
-    l1->agregar(a1);
-    l2->agregar(a2);
-    lista *l3 = l1->operator - (l2);
-    //              
-    cout << " " << l1->toString() << endl;
-    cout << " " << l2->toString() << endl;
-    cout << "-__________________" << endl;
-    cout << " " << l3->toString() << endl;
-
+//    arreglo *a1 = new arreglo();
+//    arreglo *a2 = new arreglo();
+//    lista *l1 = new lista();
+//    lista *l2 = new lista();
+//    //integer* num = new integer(1232132);
+//    
+//
+//   
+//   a1->agregarFinal(555555555);
+//   a1->agregarFinal(777777777);
+//    
+////    a1->agregarFinal(5555);
+////    a1->agregarFinal(4444);
+//    
+//   
+//  // a2->agregarFinal(22922291);
+//    
+//    a2->agregarFinal(222222222);
+//    a2->agregarFinal(667666666);
+////    a2->agregarFinal(1111);
+//    //                    
+//    l1->agregar(a1);
+//    l2->agregar(a2);
+//    lista *l3 = l1->operator - (l2);
+//    //              
+//    cout << " " << l1->toString() << endl;
+//    cout << " " << l2->toString() << endl;
+//    cout << "-__________________" << endl;
+//    cout << " " << l3->toString() << endl;
+//
  /*   integer* num = new integer(l3);
     cout<<num->toString();
     */
-    
-	//cin.get();
+
+    /*TEST METODOS FORMULAS*/
+int n = 1000;
+lista* l1 = lista::fibonacci(n);
+	cout<<"FIBONACCI DE "<<n<<endl<<l1->toString();
+	cin.get();
     return 0;
 }
 
