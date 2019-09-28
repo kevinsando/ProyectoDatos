@@ -469,7 +469,8 @@ lista* lista::operator=(lista *otra) {
 lista* lista::operator+=(lista* otra) {
     lista *aux3 = this;
     aux3 = this->operator+(otra);
-
+    
+    *this = aux3;
     return aux3;
 }
 

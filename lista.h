@@ -28,15 +28,19 @@ public:
     lista();
     lista(const lista &);
     virtual ~lista();
-    
+
     lista* operator*(const lista*);
-    lista* operator+=(lista*);
+
     lista* operator+(lista*);
     lista* operator-(lista*);
     bool operator==(lista*);
     bool operator!=(lista*);
-    
-    lista* operator =(lista*);
+
+    lista* operator=(lista*);
+    lista* operator+=(lista*);
+    lista* operator-=(lista*);
+    lista* operator*=(lista*);
+    lista* operator/=(lista*);
     
     static lista* fibonacci(int);
     static lista* fibonacci(int, lista*, lista*);
@@ -46,7 +50,7 @@ public:
     arreglo* sumaArr(arreglo*, arreglo*);
     lista* restar(lista*, lista*, bool);
     void extraer(int);
-   
+
     arreglo* recuperar(int) const;
     arreglo* sumarArr(arreglo*, arreglo*, int&); //Jasson
     std::string toString();

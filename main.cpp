@@ -161,30 +161,31 @@ else
 {
 	cout<< "son iguales";
 }
+
 arreglo* a20 =new arreglo();
 arreglo* a30 = new arreglo();
-arreglo* a40 =new arreglo();
-arreglo* a50 = new arreglo();
 lista *l10 = new lista();
 lista *l20 = new lista();
 
 
-a20->agregar(55555);
-a30->agregar(8888);
+a20->agregarFinal(55555);
+a30->agregarFinal(44444);
 
-a40->agregar(11111);
-a50->agregar(1111);
+a20->agregarFinal(11111);
+a30->agregarFinal(1111);
+
 
 l10->agregar(a20);
-l10->agregar(a30);
-l20->agregar(a40);
-l20->agregar(a50);
-cout<<endl;
-cout<<"L10: "<<l10->toString()<<endl;
-cout<<"L20: "<<l20->toString()<<endl;
-lista *l30= l10->operator +=(l20);
+l20->agregar(a30);
 
-cout<<"L30 SUMA: "<<l30->toString()<<endl;
+
+
+cout<<endl;
+cout<<l10->toString()<<" + "<<l20->toString()<<endl;
+
+l10 = l10->operator +=(l20);
+
+cout<<"L10 SOBRECARGA: "<<l10->toString()<<endl;
 
 
 //unsigned t0, t1;
