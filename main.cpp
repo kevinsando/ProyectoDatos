@@ -12,12 +12,23 @@ using namespace std;
 
 void display(int arr[]) {
     int ctr = 0;
-    for (int i = 0; i < max; i++) {
-        if (!ctr && arr[i])
-            ctr = 1;
-        if (ctr)
-            std::cout << arr[i];
+  cout << "[";
+  for (int i = 0; i < max; i++) {
+    if (!ctr && arr[i])
+    {
+      ctr = 1;
     }
+    if (ctr)
+    {
+      cout << arr[i];
+      if (i % 9 == 0)
+      {
+        cout << " ";
+      }
+    }
+    
+  }
+  cout << "]";
 }
 
 int fibonacci(int arr[], int n) {
@@ -43,9 +54,8 @@ int main() {
 
     std::memset(arr, 0, max * sizeof (int)); //Incializo la matríz con 0s
     arr[max - 1] = 1;
-    int num;
-    std::cout << "Digite un numero: ";
-    std::cin>>num;
+    int num=1000;
+
     std::cout << "el factorial de " << num << " es :\n";
     factorial(arr, num);
     display(arr);
