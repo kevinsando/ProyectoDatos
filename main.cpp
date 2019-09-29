@@ -106,16 +106,37 @@ int main() {
     a200->agregarFinal(11111);
     a300->agregarFinal(1111);
 
-    l100->agregar(a20);
-    l200->agregar(a30);
+    l100->agregar(a200);
+    l200->agregar(a300);
 
     cout << endl;
-    cout << l10->toString() << " -= " << l20->toString() << endl;
+    cout << l100->toString() << " -= " << l200->toString() << endl;
 
     l100 = l100->operator-=(l200);
 
-    cout << "L10 SOBRECARGA +=: " << l100->toString() << endl;
+    cout << "L100 SOBRECARGA -=: " << l100->toString() << endl;
 
+    
+        arreglo* a2000 = new arreglo();
+    arreglo* a3000 = new arreglo();
+    lista *l1000 = new lista();
+    lista *l2000 = new lista();
+
+    a2000->agregarFinal(55555);
+    a3000->agregarFinal(44444);
+
+    a2000->agregarFinal(11111);
+    a3000->agregarFinal(1111);
+
+    l1000->agregar(a2000);
+    l2000->agregar(a3000);
+
+    cout << endl;
+    cout << l1000->toString() << " -= " << l2000->toString() << endl;
+
+    l1000 = l1000->operator-=(l2000);
+
+    cout << "L1000 SOBRECARGA -=: " << l1000->toString() << endl;
 
 
     unsigned t0, t1;
