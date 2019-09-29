@@ -37,6 +37,10 @@ public:
     lista* operator-(lista*);
     bool operator==(lista*);
     bool operator!=(lista*);
+    bool operator>(lista*);
+    bool operator<(lista*);
+    bool operator<=(lista*);
+    bool operator>=(lista*);
 
     lista* operator=(lista*);
     lista* operator+=(lista*);

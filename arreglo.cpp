@@ -61,16 +61,16 @@ void arreglo::agregaPorPartes(int e) {
 
 string arreglo::toString() {
     //ORIGINAL
-//    stringstream s;
-//    s << "[";
-//    for (int i = 0; i < _n; i++) {
-//        s << _vector[i] << " ";
-//    }
-//    s << "]";
-//    return s.str();
-    
+    //    stringstream s;
+    //    s << "[";
+    //    for (int i = 0; i < _n; i++) {
+    //        s << _vector[i] << " ";
+    //    }
+    //    s << "]";
+    //    return s.str();
+
     //CEROS
-        int size = 10000000;
+    int size = 10000000;
     stringstream s;
     for (int i = 0; i < _n; i++) {
         if (_vector[i] > 0) {
@@ -89,7 +89,7 @@ string arreglo::primeroToString() {
     stringstream s;
     for (int i = 0; i < _n; i++) {
         //if(_vector[i]>0){
-            s<<_vector[i]<<" ";
+        s << _vector[i] << " ";
         //}
     }
     return s.str();
@@ -102,38 +102,32 @@ int arreglo::getK() {
 int arreglo::obtenerEsp(int i) {
     return _vector[i];
 }
-bool arreglo::operator==(arreglo* otro)
-{
-	bool v = true;
-	if (_k != otro->getK()) {
-		v = false; 
-		return false;
-	}
-	else
-	{
-		for (int i = 0; i < _k; i++)
-		{
-				if (_vector[i] != otro->_vector[i])
-				{
-					v = false;
-					return v;
-				}
-		}
-	}
-	return v;
-}
-bool arreglo::operator!=(arreglo* otro)
-{
 
-	if (operator== (otro))
-	{
-		return false;
-	}
-	else
-	{
-		return true;
-	}
+bool arreglo::operator==(arreglo* otro) {
+    bool v = true;
+    if (_k != otro->getK()) {
+        v = false;
+        return false;
+    } else {
+        for (int i = 0; i < _k; i++) {
+            if (_vector[i] != otro->_vector[i]) {
+                v = false;
+                return v;
+            }
+        }
+    }
+    return v;
 }
+
+bool arreglo::operator!=(arreglo* otro) {
+
+    if (operator==(otro)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
 void arreglo::agregarFinal(int e) {
     if (last >= 0) {
         _vector[last--] = e;
@@ -155,13 +149,13 @@ void arreglo::agregarFinalS(int e) {
     }
 }
 
-int arreglo::getLast(){
+int arreglo::getLast() {
     return last;
 }
 
-bool arreglo::isEmpty(){
-    for(int i=0;i<9;i++){
-        if(_vector[i]!=0){
+bool arreglo::isEmpty() {
+    for (int i = 0; i < 9; i++) {
+        if (_vector[i] != 0) {
             return false;
         }
     }
@@ -180,4 +174,19 @@ void arreglo::editarEsp(int i, int e, bool n) {
     if (i != 0 && n) {
         _vector[i] = _vector[i] * e;
     }
+}
+
+bool arreglo::operator>(arreglo* b) {
+    bool sol = false;
+    for (int i = 0; i < 9; i++) {
+        if (this->_vector[i] > b->_vector[i]) {
+            sol = true;
+            break;
+        }
+        if (this->_vector[i] < b->_vector[i]) {
+            sol = false;
+            break;
+        }
+    }
+    return sol;
 }

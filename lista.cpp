@@ -5,7 +5,6 @@
 #include "iostream"
 using namespace std;
 
-
 lista::lista()
 : _n(0), _primero(NULL), _ultimo(NULL) {
 }
@@ -58,6 +57,7 @@ void lista::agregarInicio(arreglo* info) {
         _primero->establecerAnterior(nuevo);
         _primero = nuevo;
     }
+    _n++;
 }
 
 arreglo* lista::recuperar(int i) const {
@@ -231,7 +231,6 @@ arreglo* lista::sumaArr(arreglo* a1, arreglo* a2) {//recibe dos arreglos para su
     return total;
 }
 
-
 lista* lista::multiply(lista* m) {
     nodo* aux1 = this->_primero;
     nodo* aux2 = m->_primero;
@@ -249,26 +248,26 @@ lista* lista::multiply(lista* m) {
     int count = 0;
     int aux;
     int result = 0;
-    int auxCero=0;
+    int auxCero = 0;
     //
     //    while (aux2 != NULL) {
-   // while (aux1 != NULL) {
-        for (int j = 8; j >= aux2->obtenerInfo()->getLast(); j--) {
-            //cout << "mult por" << b->obtenerEsp(j);
-            if(b->obtenerEsp(j)!=0){
+    // while (aux1 != NULL) {
+    for (int j = 8; j >= aux2->obtenerInfo()->getLast(); j--) {
+        //cout << "mult por" << b->obtenerEsp(j);
+        if (b->obtenerEsp(j) != 0) {
             for (int i = 8; i >= 0; i--) {
                 multiplication = (long long) a->obtenerEsp(i)* (long long) b->obtenerEsp(j);
                 //cout << "Multiplication: " << multiplication << endl;
 
-                    for (int i = 0; i < zero; i++) {
-                        if(i==8){
-                            agregar->agregarInicio(celda);
-                            celda=new arreglo();
-                            //cout<<"dassssssssss";
-                        }else{
-                            celda->agregarFinal(0);
-                        }
+                for (int i = 0; i < zero; i++) {
+                    if (i == 8) {
+                        agregar->agregarInicio(celda);
+                        celda = new arreglo();
+                        //cout<<"dassssssssss";
+                    } else {
+                        celda->agregarFinal(0);
                     }
+                }
                 if (multiplication > 0) {
                     zero++;
                     zero += (8 - j);
@@ -285,9 +284,9 @@ lista* lista::multiply(lista* m) {
                         count = 0;
                         celda->agregarFinal(result);
                         //cout << "celda: " << celda->toString() << endl;
-                        if(celda->obtenerEsp(0)!=0&&multiplication!=0){
+                        if (celda->obtenerEsp(0) != 0 && multiplication != 0) {
                             agregar->agregarInicio(celda);
-                            celda=new arreglo();
+                            celda = new arreglo();
                         }
                         result = 0;
                     }
@@ -298,9 +297,9 @@ lista* lista::multiply(lista* m) {
                 celda = new arreglo();
                 agregar->eliminarPrimero();
             }
-            }
         }
-        //aux1 = aux1->obtenerAnterior();
+    }
+    //aux1 = aux1->obtenerAnterior();
     //}
     //    }aux2=aux2->obtenerAnterior();
     //resultado->agregar(suma);
@@ -317,8 +316,6 @@ void lista::eliminarPrimero() {
     }
     delete aux;
 }
-
-
 
 lista* lista::operator+(lista* plus) {
 
@@ -554,6 +551,49 @@ lista* lista::operator=(lista *otra) {
         }
     }
     return this;
+}
+
+bool lista::operator>(lista* b) {
+    bool valor=true;
+    nodo* a1;
+    nodo* a2;
+    cout<<"esta: "<<this->_n<<endl;
+    cout<<"otra: "<<b->_n<<endl;
+    if (this->operator==(b) || this->_n < b->_n) {
+        valor = false;
+    } else {
+        if(this->_n==b->_n){
+            for (int i = 0; i<this->_n; i++) {
+            a1 = this->_primero;
+            a2 = b->_primero;
+            if (a1->obtenerInfo()->operator==(a2->obtenerInfo())) {
+                a1=a1->obtenerSiguiente();
+                a2=a2->obtenerSiguiente();
+                break;
+            }
+        }
+        valor=a1->obtenerInfo()->operator >(a2->obtenerInfo());
+        }
+    }
+    return valor;
+}
+
+bool lista::operator<(lista* b) {
+    bool valor;
+    if(this->operator ==(b)){
+        valor = false;
+    }else{
+        valor = (!this->operator >(b));
+    }
+    return valor;
+}
+
+bool lista::operator<=(lista* b){
+    return(this->operator ==(b)||this->operator <(b));
+}
+
+bool lista::operator>=(lista* b){
+    return(this->operator ==(b)||this->operator >(b));
 }
 
 lista* lista::operator+=(lista* otra) {

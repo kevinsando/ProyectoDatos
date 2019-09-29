@@ -10,6 +10,7 @@ public:
     void agregar(int);
     bool operator==(arreglo*);
     bool operator!=(arreglo*);
+    bool operator>(arreglo*);
     void agregarFinal(int);
     void agregarFinalS(int);
     void agregaPorPartes(int);

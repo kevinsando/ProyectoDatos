@@ -66,7 +66,7 @@ int main() {
 //    arreglo *a2 = new arreglo();
 //    arreglo* a3 = new arreglo();
 //    
-//    a1->agregarFinal(100000000);
+//   a1->agregarFinal(100000000);
 //   a1->agregarFinal(100000000);
 //   a1->agregarFinal(100000000);
 //   a1->agregarFinal(100000000);
@@ -77,21 +77,25 @@ int main() {
 //   a1->agregarFinal(100000000);
 //    
 //    
-//    a2->agregarFinal(22222222);
-//    a2->agregarFinal(22222222);
-//    a2->agregarFinal(22222222);
-//    a2->agregarFinal(22222222);
-//    a2->agregarFinal(22222222);
-//    a2->agregarFinal(22222222);
-//    a2->agregarFinal(22222222);
-//    a2->agregarFinal(22222222);
-//    a2->agregarFinal(22222222);
-//
+//   a2->agregarFinal(100000000);
+//   a2->agregarFinal(100000000);
+//   a2->agregarFinal(100000000);
+//   a2->agregarFinal(100000000);
+//   a2->agregarFinal(100000000);
+//   a2->agregarFinal(100000000);
+//   a2->agregarFinal(100000000);
+//   a2->agregarFinal(100000000);
+//   a2->agregarFinal(100000000);
+//    
 //    
 //
 //    
 //    l1->agregar(a1);
 //    l2->agregar(a2);
+//
+//    
+//    
+//    cout<<l1->operator >(l2);
 //
 //
 //    
@@ -191,35 +195,35 @@ int main() {
 
 //TEST MULTIPLY
 
-    lista *l1 = new lista();
-    lista *l2 = new lista();
-    lista* l3 = new lista();
-    arreglo *a1 = new arreglo();
-    arreglo *a2 = new arreglo();
-    
-    a1->agregarFinal(555555555);
-    a1->agregarFinal(474566454);
-    a1->agregarFinal(999999999);
-    a1->agregarFinal(999999999);
-    a1->agregarFinal(243435556);
-    a1->agregarFinal(999999999);
-    a1->agregarFinal(333333333);
-    a1->agregarFinal(999999999);
-    a1->agregarFinal(222222222);
-    
-    
-    a2->agregarFinal(675777567);    
-
-    
-    l1->agregar(a1);
-    l2->agregar(a2);
-
-
+//    lista *l1 = new lista();
+//    lista *l2 = new lista();
+//    lista* l3 = new lista();
+//    arreglo *a1 = new arreglo();
+//    arreglo *a2 = new arreglo();
 //    
-    cout<<l1->toString()<<" * "<<l2->toString()<<endl;
-    l3=l1->multiply(l2);
-
-    cout<<l3->toString();
+//    a1->agregarFinal(555555555);
+//    a1->agregarFinal(474566454);
+//    a1->agregarFinal(999999999);
+//    a1->agregarFinal(999999999);
+//    a1->agregarFinal(243435556);
+//    a1->agregarFinal(999999999);
+//    a1->agregarFinal(333333333);
+//    a1->agregarFinal(999999999);
+//    a1->agregarFinal(222222222);
+//    
+//    
+//    a2->agregarFinal(675777567);    
+//
+//    
+//    l1->agregar(a1);
+//    l2->agregar(a2);
+//
+//
+////    
+//    cout<<l1->toString()<<" * "<<l2->toString()<<endl;
+//    l3=l1->multiply(l2);
+//
+//    cout<<l3->toString();
 
 
 
