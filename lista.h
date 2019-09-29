@@ -8,7 +8,7 @@
 class nodo {
 public:
     nodo(arreglo*, nodo* = NULL, nodo* = NULL);
-    virtual ~nodo();
+    ~nodo();
 
     virtual arreglo* obtenerInfo() const;
     virtual nodo* obtenerSiguiente() const;
@@ -29,10 +29,9 @@ public:
 
     lista();
     lista(const lista &);
-    virtual ~lista();
+    ~lista();
 
-    lista* operator*(const lista*);
-
+    lista* operator*(lista*);
     lista* operator+(lista*);
     lista* operator-(lista*);
     bool operator==(lista*);

@@ -27,9 +27,13 @@ lista::lista(const lista &otra)
 }
 
 lista::~lista() {
-    if (_primero != NULL) {
-        delete _primero;
+    nodo* aux;
+    while (_primero != NULL) {
+        aux=_primero;
+        _primero=_primero->obtenerSiguiente();
+        delete aux;
     }
+
 }
 
 int lista::numElementos() const {
@@ -114,88 +118,88 @@ void lista::extraer(int posicion) {
 
 }
 
-lista* lista::operator*(const lista* b) {//multiplicación
-
-    //verifica cual vector tiene más digitos para saber cuantos corrimientos se deben hacer
-    int tamb = b->recuperar(0)->getK();
-    int tamA = this->recuperar(0)->getK();
-    int tamC = 0;
-    if (tamb > tamA) {
-        tamC = tamb;
-    } else {
-        tamC = tamA;
-    }
-    //---------
-    lista *tot = new lista(); //lista que retorna el resultado de la multiplicacion sin la suma
-    lista *auxiliar = new lista(); //alamacena la lista final con la multiplicacion y suma, es la que se retorna
-
-    long long resultado = 0; //guarda el total de la multiplicacion de digito por digito
-
-    int a = 0; //guarda digito a multiplicar
-    int bb = 0; //guarda digito a multiplicar
-    long long carry = 0; //acarreo
-
-
-    for (int i = b->recuperar(0)->getK() - 1; i >= 0; i--) {//recorrere los arreglos de la lista
-        arreglo *total1 = new arreglo(); //contiene la multiplicacion solo por un digito
-
-        for (int j = this->recuperar(0)->getK() - 1; j >= 0; j--) {//recorrere los arreglos de la lista
-
-            a = this->recuperar(0)->obtenerEsp(j); //obtiene digito por digito del arreglo para multiplicarlo
-            bb = b->recuperar(0)->obtenerEsp(i); //obtiene digito por digito del arreglo para multiplicarlo
-            resultado = (long long) a * (long long) bb + (long long) carry; //multiplicacion de a*bb ya terminada
-            carry = resultado / 10; //calculo de acarreo
-            if (resultado >= 10) {
-                resultado = resultado % 10;
-            }
-
-        }
-
-
-        total1->agregarFinalS(carry); //agrega el acarreo 
-        tot->agregar(total1); //agrega a la lista final el arreglo que contiene la multiplicacion
-        //cada arreglo contiene la multiplicacion de toda una lista por un digito de la segunda lista
-        carry = 0; //retorna el carry a su valor inicial
-
-    }
-
-    for (int i = 0; i < tamC; i++) {//recorre los vectores
-        int j = 0;
-        while (j < i) {
-            tot->recuperar(i)->agregar(0); //agrega n ceros, corrimiento para sumar
-            j++;
-        }
-    }
-
-    for (int i = 1; i < tamC; i++) {//completa los vectores a nueve digitos con ceros
-        int j = 0;
-        while (j < 9) {
-            tot->recuperar(i)->agregarFinalS(0);
-            tot->recuperar(0)->agregarFinalS(0);
-            j++;
-        }
-
-    }
-    tot->recuperar(0)->agregarFinalS(0);
-
-
-    //********** Calculo Suma **********
-
-    if (tot->numElementos() < 2) //VERIFICAR ESTO!!!!!! SI UNICAMENTE HAY UN ELEMENTO POR CELDA EN LOS ARREGLOS, ENTRA EN ESTA CONDICION
-    {
-        auxiliar->agregar(tot->recuperar(0));
-    } else {
-        auxiliar->agregar(sumaArr(tot->recuperar(0), tot->recuperar(1)));
-    }
-    for (int i = 2; i < tamC; i++) {
-
-        auxiliar->agregar(sumaArr(auxiliar->recuperar(0), tot->recuperar(i)));
-
-        auxiliar->extraer(0);
-    }
-    return auxiliar;
-    //  return tot;
-}
+//lista* lista::operator*(const lista* b) {//multiplicación
+//
+//    //verifica cual vector tiene más digitos para saber cuantos corrimientos se deben hacer
+//    int tamb = b->recuperar(0)->getK();
+//    int tamA = this->recuperar(0)->getK();
+//    int tamC = 0;
+//    if (tamb > tamA) {
+//        tamC = tamb;
+//    } else {
+//        tamC = tamA;
+//    }
+//    //---------
+//    lista *tot = new lista(); //lista que retorna el resultado de la multiplicacion sin la suma
+//    lista *auxiliar = new lista(); //alamacena la lista final con la multiplicacion y suma, es la que se retorna
+//
+//    long long resultado = 0; //guarda el total de la multiplicacion de digito por digito
+//
+//    int a = 0; //guarda digito a multiplicar
+//    int bb = 0; //guarda digito a multiplicar
+//    long long carry = 0; //acarreo
+//
+//
+//    for (int i = b->recuperar(0)->getK() - 1; i >= 0; i--) {//recorrere los arreglos de la lista
+//        arreglo *total1 = new arreglo(); //contiene la multiplicacion solo por un digito
+//
+//        for (int j = this->recuperar(0)->getK() - 1; j >= 0; j--) {//recorrere los arreglos de la lista
+//
+//            a = this->recuperar(0)->obtenerEsp(j); //obtiene digito por digito del arreglo para multiplicarlo
+//            bb = b->recuperar(0)->obtenerEsp(i); //obtiene digito por digito del arreglo para multiplicarlo
+//            resultado = (long long) a * (long long) bb + (long long) carry; //multiplicacion de a*bb ya terminada
+//            carry = resultado / 10; //calculo de acarreo
+//            if (resultado >= 10) {
+//                resultado = resultado % 10;
+//            }
+//
+//        }
+//
+//
+//        total1->agregarFinalS(carry); //agrega el acarreo 
+//        tot->agregar(total1); //agrega a la lista final el arreglo que contiene la multiplicacion
+//        //cada arreglo contiene la multiplicacion de toda una lista por un digito de la segunda lista
+//        carry = 0; //retorna el carry a su valor inicial
+//
+//    }
+//
+//    for (int i = 0; i < tamC; i++) {//recorre los vectores
+//        int j = 0;
+//        while (j < i) {
+//            tot->recuperar(i)->agregar(0); //agrega n ceros, corrimiento para sumar
+//            j++;
+//        }
+//    }
+//
+//    for (int i = 1; i < tamC; i++) {//completa los vectores a nueve digitos con ceros
+//        int j = 0;
+//        while (j < 9) {
+//            tot->recuperar(i)->agregarFinalS(0);
+//            tot->recuperar(0)->agregarFinalS(0);
+//            j++;
+//        }
+//
+//    }
+//    tot->recuperar(0)->agregarFinalS(0);
+//
+//
+//    //********** Calculo Suma **********
+//
+//    if (tot->numElementos() < 2) //VERIFICAR ESTO!!!!!! SI UNICAMENTE HAY UN ELEMENTO POR CELDA EN LOS ARREGLOS, ENTRA EN ESTA CONDICION
+//    {
+//        auxiliar->agregar(tot->recuperar(0));
+//    } else {
+//        auxiliar->agregar(sumaArr(tot->recuperar(0), tot->recuperar(1)));
+//    }
+//    for (int i = 2; i < tamC; i++) {
+//
+//        auxiliar->agregar(sumaArr(auxiliar->recuperar(0), tot->recuperar(i)));
+//
+//        auxiliar->extraer(0);
+//    }
+//    return auxiliar;
+//    //  return tot;
+//}
 
 arreglo* lista::sumaArr(arreglo* a1, arreglo* a2) {//recibe dos arreglos para sumarlos
     arreglo* total = new arreglo(); //se alamacena un nuevo arreglo equivalente a suma de los dos que se reciben por parametro
@@ -231,7 +235,7 @@ arreglo* lista::sumaArr(arreglo* a1, arreglo* a2) {//recibe dos arreglos para su
     return total;
 }
 
-lista* lista::multiply(lista* m) {
+lista* lista::operator*(lista* m) {
     nodo* aux1 = this->_primero;
     nodo* aux2 = m->_primero;
     arreglo* a = aux1->obtenerInfo();
@@ -248,15 +252,14 @@ lista* lista::multiply(lista* m) {
     int count = 0;
     int aux;
     int result = 0;
-    int auxCero = 0;
     //
     //    while (aux2 != NULL) {
     // while (aux1 != NULL) {
-    for (int j = 8; j >= aux2->obtenerInfo()->getLast(); j--) {
+    //for (int j = 8; j >= aux2->obtenerInfo()->getLast(); j--) {
         //cout << "mult por" << b->obtenerEsp(j);
-        if (b->obtenerEsp(j) != 0) {
+        
             for (int i = 8; i >= 0; i--) {
-                multiplication = (long long) a->obtenerEsp(i)* (long long) b->obtenerEsp(j);
+                multiplication = (long long) a->obtenerEsp(i)* (long long) b->obtenerEsp(8);
                 //cout << "Multiplication: " << multiplication << endl;
 
                 for (int i = 0; i < zero; i++) {
@@ -270,7 +273,6 @@ lista* lista::multiply(lista* m) {
                 }
                 if (multiplication > 0) {
                     zero++;
-                    zero += (8 - j);
                 }
                 while (multiplication > 0) {
                     aux = multiplication % 10;
@@ -297,8 +299,8 @@ lista* lista::multiply(lista* m) {
                 celda = new arreglo();
                 agregar->eliminarPrimero();
             }
-        }
-    }
+        
+    //}
     //aux1 = aux1->obtenerAnterior();
     //}
     //    }aux2=aux2->obtenerAnterior();
@@ -554,25 +556,23 @@ lista* lista::operator=(lista *otra) {
 }
 
 bool lista::operator>(lista* b) {
-    bool valor=true;
+    bool valor = true;
     nodo* a1;
     nodo* a2;
-    cout<<"esta: "<<this->_n<<endl;
-    cout<<"otra: "<<b->_n<<endl;
     if (this->operator==(b) || this->_n < b->_n) {
         valor = false;
     } else {
-        if(this->_n==b->_n){
+        if (this->_n == b->_n) {
             for (int i = 0; i<this->_n; i++) {
-            a1 = this->_primero;
-            a2 = b->_primero;
-            if (a1->obtenerInfo()->operator==(a2->obtenerInfo())) {
-                a1=a1->obtenerSiguiente();
-                a2=a2->obtenerSiguiente();
-                break;
+                a1 = this->_primero;
+                a2 = b->_primero;
+                if (a1->obtenerInfo()->operator==(a2->obtenerInfo())) {
+                    a1 = a1->obtenerSiguiente();
+                    a2 = a2->obtenerSiguiente();
+                    break;
+                }
             }
-        }
-        valor=a1->obtenerInfo()->operator >(a2->obtenerInfo());
+            valor = a1->obtenerInfo()->operator>(a2->obtenerInfo());
         }
     }
     return valor;
@@ -580,20 +580,20 @@ bool lista::operator>(lista* b) {
 
 bool lista::operator<(lista* b) {
     bool valor;
-    if(this->operator ==(b)){
+    if (this->operator==(b)) {
         valor = false;
-    }else{
-        valor = (!this->operator >(b));
+    } else {
+        valor = (!this->operator>(b));
     }
     return valor;
 }
 
-bool lista::operator<=(lista* b){
-    return(this->operator ==(b)||this->operator <(b));
+bool lista::operator<=(lista* b) {
+    return (this->operator==(b) || this->operator<(b));
 }
 
-bool lista::operator>=(lista* b){
-    return(this->operator ==(b)||this->operator >(b));
+bool lista::operator>=(lista* b) {
+    return (this->operator==(b) || this->operator>(b));
 }
 
 lista* lista::operator+=(lista* otra) {
@@ -633,6 +633,7 @@ _info(info), _siguiente(siguiente), _anterior(anterior) {
 }
 
 nodo::~nodo() {
+    delete _info;
 }
 
 arreglo * nodo::obtenerInfo() const {

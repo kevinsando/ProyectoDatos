@@ -52,61 +52,6 @@ int main() {
     //    delete[] arr;
     //    std::cin.get();
     //    std::cin.get();
-
-
-
-
-    //Test de suma
-
-
-//    lista *l1 = new lista();
-//    lista *l2 = new lista();
-//    lista* l3 = new lista();
-//    arreglo *a1 = new arreglo();
-//    arreglo *a2 = new arreglo();
-//    arreglo* a3 = new arreglo();
-//    
-//   a1->agregarFinal(100000000);
-//   a1->agregarFinal(100000000);
-//   a1->agregarFinal(100000000);
-//   a1->agregarFinal(100000000);
-//   a1->agregarFinal(100000000);
-//   a1->agregarFinal(100000000);
-//   a1->agregarFinal(100000000);
-//   a1->agregarFinal(100000000);
-//   a1->agregarFinal(100000000);
-//    
-//    
-//   a2->agregarFinal(100000000);
-//   a2->agregarFinal(100000000);
-//   a2->agregarFinal(100000000);
-//   a2->agregarFinal(100000000);
-//   a2->agregarFinal(100000000);
-//   a2->agregarFinal(100000000);
-//   a2->agregarFinal(100000000);
-//   a2->agregarFinal(100000000);
-//   a2->agregarFinal(100000000);
-//    
-//    
-//
-//    
-//    l1->agregar(a1);
-//    l2->agregar(a2);
-//
-//    
-//    
-//    cout<<l1->operator >(l2);
-//
-//
-//    
-//    cout<<l1->toString()<<" + "<<l2->toString()<<endl;
-//    
-//  
-//    
-//    
-//   l3= l1->operator +(l2);
-//    cout<<l3->toString();
-//    
     
     //*** test Multiplicacion ***
     
@@ -193,38 +138,6 @@ int main() {
 
 
 
-//TEST MULTIPLY
-
-//    lista *l1 = new lista();
-//    lista *l2 = new lista();
-//    lista* l3 = new lista();
-//    arreglo *a1 = new arreglo();
-//    arreglo *a2 = new arreglo();
-//    
-//    a1->agregarFinal(555555555);
-//    a1->agregarFinal(474566454);
-//    a1->agregarFinal(999999999);
-//    a1->agregarFinal(999999999);
-//    a1->agregarFinal(243435556);
-//    a1->agregarFinal(999999999);
-//    a1->agregarFinal(333333333);
-//    a1->agregarFinal(999999999);
-//    a1->agregarFinal(222222222);
-//    
-//    
-//    a2->agregarFinal(675777567);    
-//
-//    
-//    l1->agregar(a1);
-//    l2->agregar(a2);
-//
-//
-////    
-//    cout<<l1->toString()<<" * "<<l2->toString()<<endl;
-//    l3=l1->multiply(l2);
-//
-//    cout<<l3->toString();
-
 
 
 
@@ -244,6 +157,96 @@ int main() {
 //num->parse("43466557686937456435688527675040625802564660517371780402481729089536555417949051890403879840079255169295922593080322634775209689623239873322471161642996440906533187938298969649928516003704476137795166849228875");
 //cout << num->toString(); 
 //	cin.get();
+    
+    
+    
+    
+    lista *l1 = new lista();
+    lista *l2 = new lista();
+    lista* l3 = new lista();
+    arreglo *a1 = new arreglo();
+    arreglo *a2 = new arreglo();
+    arreglo* a3= new arreglo();
+   a1->agregarFinal(999999999);
+   a1->agregarFinal(999999999);
+   a1->agregarFinal(999999999);
+   a1->agregarFinal(999999999);
+   a1->agregarFinal(999999999);
+   a1->agregarFinal(999999999);
+   a1->agregarFinal(999999999);
+   a1->agregarFinal(999999999);
+   a1->agregarFinal(999999999);
+   a2->agregarFinal(999999999);
+   a2->agregarFinal(999999999);
+   a2->agregarFinal(999999999);
+   a2->agregarFinal(999999999);
+   a2->agregarFinal(999999999);
+   a2->agregarFinal(999999999);
+   a2->agregarFinal(999999999);
+   a2->agregarFinal(999999999);
+   a2->agregarFinal(999999999);
+   a3->agregarFinal(999999999);
+    l1->agregar(a1);
+    l2->agregar(a2);
+    
+    cout<<"Numero 1: "<<l1->toString()<<endl;
+    cout<<"Numero 2: "<<l2->toString()<<endl;
+    cout<<"Son iguales?: "<<l1->operator ==(l2)<<" ,Diferentes?: "<<l1->operator !=(l2)<<endl;
+    cout<<"N1 mayor?: "<<l1->operator >(l2)<<" ,N2 menor?: "<<l1->operator <(l2)<<endl;
+    cout<<"N3=N1+N2"<<endl;
+    l3=l1->operator +(l2);
+    cout<<l1->toString()<<" + "<<l2->toString()<<endl;
+    cout<<"N3: "<<l3->toString()<<endl;
+    cout<<"N3 mayor que N1?: "<<l3->operator >(l1)<<", es N1 menor que N3?: "<<l1->operator <(l3)<<endl;
+    cout<<"se eliminan N1, N2 y N3"<<endl;
+    delete l3;
+    delete l2;
+    delete l1;
+    cout<<"Se les asignan nuevos numeros"<<endl;
+    l1 = new lista();
+    l2 = new lista();
+    a1 = new arreglo();
+    a2 = new arreglo();
+    a1->agregarFinal(987536287);
+    a1->agregarFinal(849915367);
+    a1->agregarFinal(987536287);
+    a1->agregarFinal(546789032);
+    a1->agregarFinal(911111111);
+    a1->agregarFinal(987536287);
+    a1->agregarFinal(456546462);
+    a1->agregarFinal(132414344);
+    a1->agregarFinal(987536287);
+    a2->agregarFinal(982434258);
+    l1->agregar(a1);
+    l2->agregar(a2);
+    cout<<"N1: "<<l1->toString()<<endl;
+    cout<<"N2: "<<l2->toString()<<endl;
+    l3=l1->operator *(l2);
+    cout<<"N3= N1*N2: "<<l3->toString()<<endl;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     return 0;
 }

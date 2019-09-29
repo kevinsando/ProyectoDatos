@@ -6,7 +6,7 @@ class arreglo {
 public:
     arreglo();
     arreglo(arreglo* orig);
-    virtual ~arreglo();
+    ~arreglo();
     void agregar(int);
     bool operator==(arreglo*);
     bool operator!=(arreglo*);
