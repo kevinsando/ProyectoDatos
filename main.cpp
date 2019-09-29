@@ -132,11 +132,11 @@ int main() {
     l2000->agregar(a3000);
 
     cout << endl;
-    cout << l1000->toString() << " -= " << l2000->toString() << endl;
+    cout << l1000->toString() << " *= " << l2000->toString() << endl;
 
     l1000 = l1000->operator-=(l2000);
 
-    cout << "L1000 SOBRECARGA -=: " << l1000->toString() << endl;
+    cout << "L1000 SOBRECARGA *=: " << l1000->toString() << endl;
 
 
     unsigned t0, t1;
