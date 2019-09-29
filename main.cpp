@@ -78,28 +78,43 @@ int main() {
     lista *l10 = new lista();
     lista *l20 = new lista();
 
-
     a20->agregarFinal(55555);
     a30->agregarFinal(44444);
 
     a20->agregarFinal(11111);
     a30->agregarFinal(1111);
 
-
     l10->agregar(a20);
     l20->agregar(a30);
 
-
-
     cout << endl;
-    cout << l10->toString() << " + " << l20->toString() << endl;
+    cout << l10->toString() << " += " << l20->toString() << endl;
 
     l10 = l10->operator+=(l20);
 
-    cout << "L10 SOBRECARGA: " << l10->toString() << endl;
+    cout << "L10 SOBRECARGA +=: " << l10->toString() << endl;
 
 
+    arreglo* a200 = new arreglo();
+    arreglo* a300 = new arreglo();
+    lista *l100 = new lista();
+    lista *l200 = new lista();
 
+    a200->agregarFinal(55555);
+    a300->agregarFinal(44444);
+
+    a200->agregarFinal(11111);
+    a300->agregarFinal(1111);
+
+    l100->agregar(a20);
+    l200->agregar(a30);
+
+    cout << endl;
+    cout << l10->toString() << " -= " << l20->toString() << endl;
+
+    l100 = l100->operator-=(l200);
+
+    cout << "L10 SOBRECARGA +=: " << l100->toString() << endl;
 
 
 
